@@ -1,0 +1,12 @@
+.ButtonPrimary {
+  padding: 0.6875rem 1.6875rem;
+}
+
+.ButtonPrimary:hover {
+  box-shadow: 0rem 0rem 2rem 0rem rgba(99, 60, 255, 0.25);
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.25;
+}
