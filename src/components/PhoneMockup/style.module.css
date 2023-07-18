@@ -1,0 +1,18 @@
+.email {
+  word-break: break-all;
+}
+
+.container::-webkit-scrollbar-track {
+  background: transparent;
+  display: none !important;
+}
+.container::-webkit-scrollbar-thumb {
+  background: #633cff;
+  border-radius: 0rem;
+  display: none !important;
+}
+
+.container::-webkit-scrollbar {
+  width: 0.6rem;
+  display: none !important;
+}
