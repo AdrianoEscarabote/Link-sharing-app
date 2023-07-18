@@ -1,0 +1,21 @@
+.header {
+  padding: 1rem 1rem 1rem 1.5rem;
+}
+
+.logo_small {
+  display: none;
+}
+
+@media (max-width: 68.75rem) {
+  .logo_large {
+    display: none;
+  }
+  .logo_small {
+    display: unset !important;
+  }
+  .link {
+    background: url("/assets/icon-preview-header.svg") no-repeat center;
+    height: 2.625rem;
+    max-width: 3.25rem !important;
+  }
+}
