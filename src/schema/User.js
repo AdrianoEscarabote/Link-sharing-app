@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   firstName: String,
   lastName: String,
+  previewEmail: String,
   links: [LinkSchema],
 });
 
