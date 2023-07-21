@@ -1,0 +1,14 @@
+.alert {
+  animation: alertAnimation 0.6s ease-in-out;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes alertAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
