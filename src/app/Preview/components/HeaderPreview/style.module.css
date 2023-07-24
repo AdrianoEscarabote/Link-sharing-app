@@ -1,0 +1,38 @@
+.link {
+  max-width: 13.3125rem;
+}
+
+@media (max-width: 32.5rem) {
+  .link {
+    max-width: 10.5625rem;
+  }
+
+  .nav {
+    padding: 0rem !important;
+  }
+
+  .nav::before {
+    display: none;
+  }
+}
+
+@media (max-width: 24.375rem) {
+  .link {
+    font-size: 0.875rem !important;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    max-width: 7.4375rem;
+  }
+}
+
+.nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0rem 0rem 2rem 2rem;
+  background: var(--purple, #633cff);
+  height: 22.3125rem;
+  width: 100%;
+  z-index: -100 !important;
+}
