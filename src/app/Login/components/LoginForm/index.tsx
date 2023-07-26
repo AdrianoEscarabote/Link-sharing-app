@@ -7,8 +7,11 @@ import ButtonPrimary from "../../../../components/ButtonPrimary/index";
 import style from "./style.module.css";
 import Input from "../../../../components/Input/index";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setEmail, setUserId } from "@/redux/userProfileData/reducer";
 
 const Form = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [errorData, setErrorData] = useState("");
   const {
@@ -38,7 +41,14 @@ const Form = () => {
           ? null
           : localStorage.setItem("token", token);
 
-        router.push("/ProfileDetails/64b6b275628e9d7551be865d");
+        dispatch(setUserId({ id: dataJson._id }));
+        dispatch(setEmail({ email: dataJson.email }));
+
+        const userId = dataJson._id;
+        localStorage.setItem("id", userId);
+
+        router.push(`/ProfileDetails/${userId}`);
+
         setErrorData("");
       } else {
         setErrorData(dataJson.msg);
