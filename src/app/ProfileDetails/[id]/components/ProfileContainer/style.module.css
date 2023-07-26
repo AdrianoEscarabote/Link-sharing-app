@@ -1,0 +1,11 @@
+@media (max-width: 45rem) {
+  .container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 27.5rem) {
+  .container {
+    padding: 1rem !important;
+  }
+}
