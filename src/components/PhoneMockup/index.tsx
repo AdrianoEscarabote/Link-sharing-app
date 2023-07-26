@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { rootState } from "../../redux/root-reducer-types";
 
 const PhoneMockup = () => {
-  const { profileImage, name, email, last_name } = useSelector(
+  const { profileImageUrl, lastName, previewEmail, firstName } = useSelector(
     (rootReducer: rootState) => rootReducer.profileDataSlice
   );
 
@@ -21,27 +21,27 @@ const PhoneMockup = () => {
           height={631}
         />
 
-        {email && (
+        {previewEmail && (
           <div className="absolute w-[280px] h-[200px] top-[184px] text-center">
             <div className="relative">
               <p className="HeadingS text-almost_dark py-0 px-4 bg-white whitespace-nowrap overflow-hidden overflow-ellipsis">
-                {name} {last_name}
+                {firstName} {lastName}
               </p>
               {
                 <p
                   className={`${style.email} text-center mt-1 text-gray BodyS py-1 px-2 bg-white`}
                 >
-                  {email}
+                  {previewEmail}
                 </p>
               }
             </div>
           </div>
         )}
 
-        {profileImage && (
+        {profileImageUrl && (
           <div className="absolute top-[65px] w-[94px] h-[94px] border-4 border-dark_purple rounded-full overflow-hidden">
             <Image
-              src={profileImage}
+              src={profileImageUrl}
               fill
               alt="profile image"
               className="object-cover"
