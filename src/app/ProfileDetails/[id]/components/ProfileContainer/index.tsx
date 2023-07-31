@@ -12,7 +12,9 @@ import useUserIdFromLocalStorage from "@/hooks/useUserIdFromLocalStorage";
 import ModalLogin from "@/components/ModalAlert";
 
 const ProfileContainer = () => {
-  const { showModalLogin } = useUserIdFromLocalStorage();
+  useUserIdFromLocalStorage();
+  useLinksData();
+  const { showModalLogin } = useProfileData();
 
   const [showPhoneMockup, setShowPhoneMockup] = useState<boolean>(true);
 
@@ -30,9 +32,6 @@ const ProfileContainer = () => {
       window.removeEventListener("resize", checkWidth);
     };
   }, []);
-
-  useLinksData();
-  useProfileData();
 
   return (
     <section className="w-full flex justify-center gap-6">

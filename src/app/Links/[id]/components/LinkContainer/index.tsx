@@ -9,10 +9,10 @@ import useUserIdFromLocalStorage from "@/hooks/useUserIdFromLocalStorage";
 import ModalLogin from "@/components/ModalAlert";
 
 const LinkContainer = () => {
-  const { showModalLogin } = useUserIdFromLocalStorage();
+  useUserIdFromLocalStorage();
   const [showPhoneMockup, setShowPhoneMockup] = useState<boolean>(true);
   useLinksData();
-  useProfileData();
+  const { showModalLogin } = useProfileData();
 
   useEffect(() => {
     const checkWidth = () => {
