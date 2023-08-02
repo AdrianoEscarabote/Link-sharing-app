@@ -3,34 +3,63 @@
 import ButtonSecondary from "../../../../../components/ButtonSecondary/index";
 import LinkPlatformSelector from "../LinkPlatformSelector";
 import GetYouStarted from "../GetYouStarted";
-import { useState } from "react";
-import { linkSelectorProps } from "./CustomLinksTypes";
+import { useSelector } from "react-redux";
+import { PlatformsName, rootState } from "@/redux/root-reducer-types";
+import { useDispatch } from "react-redux";
+import { removeLink, setNewLink } from "@/redux/userLinks/reducer";
 
 const CustomLink = () => {
-  const [linkSelectors, setLinkSelectors] = useState<linkSelectorProps[]>([]);
+  const dispatch = useDispatch();
+  const { links } = useSelector(
+    (rootReducer: rootState) => rootReducer.userLinksSlice
+  );
 
-  const handleClickButton = () => {
-    const counter = 1;
-    if (linkSelectors.length < 5) {
-      const id = linkSelectors.length + counter;
-      const component = (
-        <LinkPlatformSelector
-          removeLinkSelector={() => handleRemoveState(id)}
-          key={id}
-          id={id}
-        />
+  const handleRemoveLink = (idToRemove: string) => {
+    dispatch(
+      removeLink({
+        idToRemove,
+      })
+    );
+  };
+
+  const handleAddNewLink = () => {
+    const counter = links.length + 1;
+    if (links.length < 5) {
+      const id = `${links.length + counter}`;
+      const platforms = [
+        "GitHub",
+        "Facebook",
+        "Frontend Mentor",
+        "Twitter",
+        "YouTube",
+      ];
+
+      const alreadySelected = links.map((link) => link.platform);
+
+      const platformName = platforms.find((platform) => {
+        return !alreadySelected.includes(platform as PlatformsName);
+      });
+
+      dispatch(
+        setNewLink({
+          id: id,
+          link: "",
+          platform: platformName as PlatformsName,
+        })
       );
-
-      setLinkSelectors((prevState) => [...prevState, { id, component }]);
     }
   };
 
-  const handleRemoveState = (idComponentToRemove: number) => {
-    setLinkSelectors((prevLinkSelectors) =>
-      prevLinkSelectors.filter(
-        (component) => component.id !== idComponentToRemove
-      )
-    );
+  const handleChangeInputLink = (id: string, link: string) => {
+    const updatedLinks = links.map((linkItem) => {
+      if (linkItem.id === id) {
+        return {
+          ...linkItem,
+          link: link,
+        };
+      }
+    });
+    console.log(updatedLinks);
   };
 
   return (
@@ -43,14 +72,25 @@ const CustomLink = () => {
       <ButtonSecondary
         className="mt-10"
         disabled={false}
+        type="button"
         label="+ Add new link"
-        onClick={handleClickButton}
+        onClick={handleAddNewLink}
       />
 
       <div className="relative overflow-y-scroll max-h-[46vh] custom_scrollbar flex flex-col gap-6 mt-6">
-        {linkSelectors.length === 0 && <GetYouStarted />}
-        {linkSelectors.map((item) => (
-          <div>{item.component}</div>
+        {links.length === 0 && <GetYouStarted />}
+
+        {links.map((item) => (
+          <div>
+            <LinkPlatformSelector
+              handleChangeInputLink={handleChangeInputLink}
+              removeLink={handleRemoveLink}
+              key={item.id}
+              id={item.id}
+              link={item.link}
+              platform={item.platform}
+            />
+          </div>
         ))}
       </div>
     </section>
