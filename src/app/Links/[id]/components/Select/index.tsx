@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import style from "./style.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { OptionsSelectedTypes, SelectProps } from "./SelectTypes";
 
 const platformsName = [
@@ -21,12 +21,19 @@ const platformsName = [
   { name: "Stack Overflow", img: "stack-overflow" },
 ];
 
-const Select = ({ id }: SelectProps) => {
+const Select = ({ id, platformSelected }: SelectProps) => {
   const [optionsOpen, setOptionsOpen] = useState<boolean>(false);
   const [optionsSelected, setOptionsSelected] = useState<OptionsSelectedTypes>({
     name: "GitHub",
     img: "github",
   });
+
+  useEffect(() => {
+    if (platformSelected) {
+      handleSelecteOptions(platformSelected);
+      setOptionsOpen(false);
+    }
+  }, []);
 
   const handleSelecteOptions = (name: string) => {
     const selectedOption = platformsName.find(

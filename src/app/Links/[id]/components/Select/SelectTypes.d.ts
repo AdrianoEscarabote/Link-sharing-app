@@ -5,6 +5,7 @@ interface OptionsSelectedTypes {
 
 interface SelectProps {
   id: string;
+  platformSelected: string;
 }
 
 export type { SelectProps, OptionsSelectedTypes };
