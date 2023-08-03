@@ -4,6 +4,7 @@
 }
 
 .link_input:focus {
+  border: unset !important;
   background-position: -1.25rem;
   padding-left: 1rem;
   outline: 0.0313rem solid #633cff;

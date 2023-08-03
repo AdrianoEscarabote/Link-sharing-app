@@ -10,8 +10,9 @@ function Input(
 ) {
   const inputClassName = twMerge(
     className,
-    "BodyM h-12 rounded-lg border border-gray-300 bg-white text-primaryDarker placeholder-black placeholder-opacity-20",
-    error ? "border-red-500" : "focus:ring-1 focus:ring-primary"
+    `BodyM h-12 rounded-lg border bg-white text-primaryDarker placeholder-black placeholder-opacity-20 ${
+      error ? "border-red" : "focus:ring-1 focus:ring-primary border-gray-300"
+    }`
   );
 
   return (
