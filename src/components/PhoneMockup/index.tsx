@@ -7,14 +7,18 @@ import { useSelector } from "react-redux";
 import { rootState } from "../../redux/root-reducer-types";
 
 const PhoneMockup = () => {
-  const { profileImageUrl, lastName, previewEmail, firstName } = useSelector(
-    (rootReducer: rootState) => rootReducer.profileDataSlice
+  const { links } = useSelector(
+    (rootReducer: rootState) => rootReducer.userLinksSlice
   );
 
+  const { profileImageUrl, lastName, id, previewEmail, firstName } =
+    useSelector((rootReducer: rootState) => rootReducer.profileDataSlice);
+
   return (
-    <section className="p-6 flex items-center justify-center w-full max-w-[560px] bg-white rounded-xl relative">
+    <section className="p-6 flex items-center justify-center w-full max-w-[560px] bg-white rounded-xl relative max-h-[84vh]">
       <div className="w-[307] h-[631] relative flex items-center justify-center">
         <Image
+          className={`${style.image}`}
           src="/assets/illustration-phone-mockup.svg"
           alt=""
           width={307}
@@ -55,31 +59,16 @@ const PhoneMockup = () => {
           <div
             className={`${style.container} relative w-full flex flex-col gap-5`}
           >
-            <PreviewLink
-              size="small"
-              label="Dev.to"
-              link="https://github.com/AdrianoEscarabote"
-            />
-            <PreviewLink
-              size="small"
-              label="freeCodeCamp"
-              link="https://github.com/AdrianoEscarabote"
-            />
-            <PreviewLink
-              size="small"
-              label="GitLab"
-              link="https://github.com/AdrianoEscarabote"
-            />
-            <PreviewLink
-              label="Stack Overflow"
-              size="small"
-              link="https://github.com/AdrianoEscarabote"
-            />
-            <PreviewLink
-              size="small"
-              label="Hashnode"
-              link="https://github.com/AdrianoEscarabote"
-            />
+            {links.length > 0
+              ? links.map((item, index) => (
+                  <PreviewLink
+                    key={index}
+                    size="small"
+                    label={item.platform}
+                    link={item.link}
+                  />
+                ))
+              : null}
           </div>
         </div>
       </div>
