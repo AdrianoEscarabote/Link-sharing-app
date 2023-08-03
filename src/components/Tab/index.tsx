@@ -23,7 +23,13 @@ const Tab: React.FC<TabProps> = ({
 
   return (
     <Link href={href as Url} className={tabClassName} {...props}>
-      <Image src={imagePath} width={"20"} height={"20"} alt="" />
+      <Image
+        src={imagePath}
+        style={{ width: "20px", height: "20px" }}
+        width={20}
+        height={20}
+        alt=""
+      />
       {label}
     </Link>
   );
