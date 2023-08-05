@@ -6,7 +6,7 @@ import GetYouStarted from "../GetYouStarted";
 import { useSelector } from "react-redux";
 import { PlatformsName, rootState } from "@/redux/root-reducer-types";
 import { useDispatch } from "react-redux";
-import { removeLink, setNewLink } from "@/redux/userLinks/reducer";
+import { changeValue, removeLink, setNewLink } from "@/redux/userLinks/reducer";
 
 const CustomLink = () => {
   const dispatch = useDispatch();
@@ -50,16 +50,13 @@ const CustomLink = () => {
     }
   };
 
-  const handleChangeInputLink = (id: string, link: string) => {
-    const updatedLinks = links.map((linkItem) => {
-      if (linkItem.id === id) {
-        return {
-          ...linkItem,
-          link: link,
-        };
-      }
-    });
-    console.log(updatedLinks);
+  const handleChangeInputLink = (id: string, newValue: string) => {
+    dispatch(
+      changeValue({
+        idToUpdate: id,
+        newValue,
+      })
+    );
   };
 
   return (
@@ -83,7 +80,6 @@ const CustomLink = () => {
         {links.map((item) => (
           <div>
             <LinkPlatformSelector
-              handleChangeInputLink={handleChangeInputLink}
               removeLink={handleRemoveLink}
               key={item.id}
               id={item.id}

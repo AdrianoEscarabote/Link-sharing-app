@@ -1,6 +1,9 @@
+import { PlatformsName } from "@/redux/root-reducer-types";
+
 interface linkSelectorProps {
   id: number;
-  component: JSX.Element;
+  link: string;
+  platformName: PlatformsName | string;
 }
 
 export { linkSelectorProps };
