@@ -1,10 +1,12 @@
 import Image from "next/image";
+import style from "./style.module.css";
 
 const GetYouStarted = () => {
   return (
     <section className="flex flex-col items-center gap-10 bg-almost_white p-5 rounded-xl">
       <Image
         alt="illustration empty links"
+        className={`${style.image}`}
         width={250}
         height={160}
         src="/assets/illustration-empty.svg"
