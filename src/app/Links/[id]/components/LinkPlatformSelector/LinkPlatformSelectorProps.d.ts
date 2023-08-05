@@ -1,6 +1,11 @@
+import { PlatformsName } from "@/redux/root-reducer-types";
+
 interface LinkPlatformSelectorTypes {
-  removeLinkSelector: any;
-  id: number;
+  removeLink: (idToRemove: string) => void;
+  id: string;
+  link: string;
+  platform: PlatformsName;
+  /* handleChangeInputLink: (id: string, link: string) => void; */
 }
 
 export { LinkPlatformSelectorTypes };
