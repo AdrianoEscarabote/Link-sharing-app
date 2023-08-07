@@ -4,6 +4,10 @@ const express = require("express");
 const cors = require("cors");
 const checkToken = require("./src/middlewares/checktoken");
 const app = express();
+const cookieParser = require("cookie-parser");
+
+// cookie parser
+app.use(cookieParser());
 
 // Config JSON response
 app.use(express.json());
