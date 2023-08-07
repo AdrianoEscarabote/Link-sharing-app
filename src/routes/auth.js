@@ -12,24 +12,24 @@ router.post("/register", async (req, res) => {
   // validations
 
   if (!email) {
-    return res.status(422).json({ msg: "O email é obrigatório!" });
+    return res.status(422).json({ msg: "email is required!" });
   }
 
   if (!password) {
-    return res.status(422).json({ msg: "A senha é obrigatória!" });
+    return res.status(422).json({ msg: "password is required!" });
   }
 
   if (password != confirmpassword) {
     return res
       .status(422)
-      .json({ msg: "A senha e a confirmação precisam ser iguais!" });
+      .json({ msg: "Password and confirmation must match!" });
   }
 
   // check if user exists
   const userExists = await User.findOne({ email: email });
 
   if (userExists) {
-    return res.status(422).json({ msg: "Por favor, utilize outro e-mail!" });
+    return res.status(422).json({ msg: "Please use another email!" });
   }
 
   // create password
@@ -41,6 +41,9 @@ router.post("/register", async (req, res) => {
     email,
     password: passwordHash,
   });
+
+  const expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + 30);
 
   try {
     await user.save();
@@ -54,7 +57,21 @@ router.post("/register", async (req, res) => {
       secret
     );
 
-    res.status(201).json({ success: true, _id: user._id, token });
+    res.cookie("id", user._id, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      expires: expirationDate,
+    });
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      expires: expirationDate,
+    });
+
+    res.status(201).json({ success: true, _id: user._id });
   } catch (error) {
     res.status(500).json({ msg: error });
   }
@@ -65,18 +82,18 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email) {
-    return res.status(422).json({ msg: "O email está errado!" });
+    return res.status(422).json({ msg: "The email is wrong!" });
   }
 
   if (!password) {
-    return res.status(422).json({ msg: "A senha está errada!" });
+    return res.status(422).json({ msg: "The password is wrong!" });
   }
 
   // check if user exists
   const user = await User.findOne({ email: email });
 
   if (!user) {
-    return res.status(404).json({ msg: "usuario não encontrado" });
+    return res.status(404).json({ msg: "User does not exist!" });
   }
 
   // check if password match
@@ -84,8 +101,11 @@ router.post("/login", async (req, res) => {
   const checkPassword = await bcrypt.compare(password, user.password);
 
   if (!checkPassword) {
-    return res.status(422).json({ msg: "Senha invalida!" });
+    return res.status(422).json({ msg: "Invalid password!" });
   }
+
+  const expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + 30);
 
   try {
     const secret = process.env.SECRET;
@@ -97,14 +117,29 @@ router.post("/login", async (req, res) => {
       secret
     );
 
+    console.log("valor do token no login", token);
+
+    res.cookie("id", user._id, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      expires: expirationDate,
+    });
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      expires: expirationDate,
+    });
+
     res.status(200).json({
-      msg: "Autentificação realizada com sucesso!",
-      token,
+      msg: "Authentication successful!",
       _id: user._id,
     });
   } catch (e) {
     return res.send(500).json({
-      mesg: "Aconteceu um erro no servidor, tente novamente mais tarde!",
+      mesg: "There was a server error, please try again later!",
     });
   }
 });
