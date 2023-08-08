@@ -1,19 +1,22 @@
 require("dotenv").config();
 require("./config/database");
+const https = require("https");
+const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const checkToken = require("./src/middlewares/checktoken");
-const app = express();
 const cookieParser = require("cookie-parser");
-
-// cookie parser
-app.use(cookieParser());
+const app = express();
 
 // Config JSON response
 app.use(express.json());
 
 // configura a cors para permitir todas as origens
-app.use(cors());
+const corsOptions = { credentials: true, origin: "https://localhost:5427" };
+app.use(cors(corsOptions));
+
+// cookie parser
+app.use(cookieParser());
 
 // Models
 const User = require("./src/models/User");
@@ -49,6 +52,14 @@ app.get("/user/:id", checkToken, async (req, res) => {
   res.status(200).json({ user });
 });
 
-app.listen(3000, () => {
-  console.log("servidor foi iniciado!");
+const privateKey = fs.readFileSync("./https_cert/localhost-key.pem", "utf-8");
+const certificate = fs.readFileSync("./https_cert/localhost.pem", "utf-8");
+const credentials = { key: privateKey, cert: certificate };
+
+const httpsServer = https.createServer(credentials, app);
+
+const PORT = process.env.PORT || 3000;
+
+httpsServer.listen(PORT, () => {
+  console.log(`Servidor HTTPS em execução na porta ${PORT}`);
 });
