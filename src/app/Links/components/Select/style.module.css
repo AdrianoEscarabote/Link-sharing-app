@@ -1,0 +1,27 @@
+.select:focus {
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25) !important;
+  border: 1px solid #633cff;
+}
+
+.filter img {
+  filter: invert(51%) sepia(11%) saturate(0%) hue-rotate(150deg) brightness(85%)
+    contrast(91%);
+}
+
+.selected {
+  color: #633cff;
+  font-weight: 700;
+}
+
+.container {
+  animation: openAnimation 0.4s ease-in-out;
+}
+
+@keyframes openAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

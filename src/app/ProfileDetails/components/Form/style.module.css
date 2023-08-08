@@ -1,0 +1,32 @@
+.focus_purple:focus {
+  outline: 0.0313rem solid #633cff;
+  box-shadow: 0rem 0rem 2rem 0rem rgba(99, 60, 255, 0.25);
+}
+
+@media (max-width: 41.25rem) {
+  .input {
+    max-width: 18.75rem !important;
+  }
+}
+
+@media (max-width: 33.125rem) {
+  .input {
+    max-width: 13.75rem !important;
+  }
+}
+
+@media (max-width: 27.5rem) {
+  .container_input {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .container_input span {
+    top: 0rem;
+  }
+
+  .input {
+    width: 100%;
+    max-width: unset !important;
+  }
+}
