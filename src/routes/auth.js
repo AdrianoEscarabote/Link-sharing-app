@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 // Models
 const User = require("../models/User");
+const checkToken = require("../middlewares/checktoken");
 
 router.post("/register", async (req, res) => {
   const { email, password, confirmpassword } = req.body;
@@ -97,7 +98,6 @@ router.post("/login", async (req, res) => {
   }
 
   // check if password match
-
   const checkPassword = await bcrypt.compare(password, user.password);
 
   if (!checkPassword) {
@@ -117,30 +117,52 @@ router.post("/login", async (req, res) => {
       secret
     );
 
-    console.log("valor do token no login", token);
-
     res.cookie("id", user._id, {
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "none",
       expires: expirationDate,
     });
 
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "none",
       expires: expirationDate,
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       msg: "Authentication successful!",
       _id: user._id,
+      token: token,
     });
   } catch (e) {
     return res.send(500).json({
       mesg: "There was a server error, please try again later!",
     });
+  }
+});
+
+router.post("/logout", checkToken, async (req, res) => {
+  try {
+    const id = req.cookies.id;
+
+    const user = await User.findById(id, "-password -email");
+
+    if (!user) {
+      return res.status(400).json({
+        msg: "user is not present in the database!",
+      });
+    }
+
+    res.clearCookie("id");
+    res.clearCookie("token");
+
+    return res.status(200).json({
+      msg: "success!",
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "server error!" });
   }
 });
 
