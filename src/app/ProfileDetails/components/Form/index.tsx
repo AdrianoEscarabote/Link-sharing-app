@@ -21,7 +21,7 @@ const Form = () => {
     useState<boolean>(false);
   const [alertOpen, setAlertOpen] = useState(false);
 
-  const { previewEmail, firstName, lastName, id } = useSelector(
+  const { previewEmail, firstName, lastName } = useSelector(
     (rootReducer: rootState) => rootReducer.profileDataSlice
   );
 
@@ -55,13 +55,17 @@ const Form = () => {
       lastName,
     };
 
-    const response = await fetch(`http://localhost:3000/profile/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formatData),
-    });
+    const response = await fetch(
+      `https://localhost:3000/profile/setProfileDetails`,
+      {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formatData),
+      }
+    );
 
     const responseData = await response.json();
     setShowLoadingComponent(false);
