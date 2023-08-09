@@ -8,6 +8,12 @@ const checkToken = require("./src/middlewares/checktoken");
 const cookieParser = require("cookie-parser");
 const app = express();
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://localhost:5427");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
+
 // Config JSON response
 app.use(express.json());
 
