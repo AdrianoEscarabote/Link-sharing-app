@@ -6,6 +6,10 @@
   border: 4px solid red !important;
 }
 
+.container_loading svg {
+  top: 54% !important;
+}
+
 .container_upload_image {
   background: linear-gradient(
     0deg,
