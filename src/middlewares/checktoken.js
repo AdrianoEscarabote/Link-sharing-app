@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken");
 
 function checkToken(req, res, next) {
-  const token = req.cookies.token;
+  const { id, token } = req.cookies;
 
   if (!token) {
-    console.log("valor do token", token);
     return res.status(401).json({ msg: "Acesso negado!" });
   }
 
