@@ -1,13 +1,15 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonSecondary from "../ButtonSecondary";
 import { useRouter } from "next/navigation";
 import ButtonPrimary from "../ButtonPrimary";
-
-interface SignoutComponent {
-  cancelSignout: Dispatch<SetStateAction<boolean>>;
-}
+import { useDispatch } from "react-redux";
+import { handleResetData } from "@/redux/userProfileData/reducer";
+import { handleResetLinks } from "@/redux/userLinks/reducer";
+import { SignoutComponent } from "./SignoutProps";
+import style from "./style.module.css";
 
 const SignoutComponent = ({ cancelSignout }: SignoutComponent) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [showLoadingComponent, setShowLoadingComponent] =
     useState<boolean>(false);
@@ -20,6 +22,8 @@ const SignoutComponent = ({ cancelSignout }: SignoutComponent) => {
         credentials: "include",
       });
       if (response.status === 200) {
+        dispatch(handleResetData());
+        dispatch(handleResetLinks());
         router.push("/Login");
       }
     };
@@ -86,7 +90,7 @@ const SignoutComponent = ({ cancelSignout }: SignoutComponent) => {
             label="Logout"
             showLoadingComponent={showLoadingComponent}
             onClick={() => setSignout(true)}
-            className="bg-red text-white BodyM grid place-content-center"
+            className={`bg-red text-white BodyM grid place-content-center ${style.hover}`}
           />
           <ButtonSecondary
             disabled={false}
