@@ -61,14 +61,14 @@ router.post("/register", async (req, res) => {
     res.cookie("id", user._id, {
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "none",
       expires: expirationDate,
     });
 
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "none",
       expires: expirationDate,
     });
 
@@ -163,6 +163,36 @@ router.post("/logout", checkToken, async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ msg: "server error!" });
+  }
+});
+
+router.get("/checkToken", async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const id = req.cookies.id;
+
+    if (!token && !id) {
+      return res.status(404).json({
+        msg: "error!",
+      });
+    }
+
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ msg: "error!" });
+    }
+
+    const secret = process.env.SECRET;
+
+    jwt.verify(token, secret);
+
+    // Retorna os detalhes do usuário
+    return res.status(200).json({
+      msg: "success",
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Invalid token!" });
   }
 });
 
