@@ -1,6 +1,6 @@
 "use client";
 
-import ButtonSecondary from "../../../../../components/ButtonSecondary/index";
+import ButtonSecondary from "../../../../components/ButtonSecondary/index";
 import LinkPlatformSelector from "../LinkPlatformSelector";
 import GetYouStarted from "../GetYouStarted";
 import { useSelector } from "react-redux";

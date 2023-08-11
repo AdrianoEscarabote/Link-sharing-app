@@ -1,6 +1,6 @@
 "use client";
 
-import PhoneMockup from "../../../../../components/PhoneMockup";
+import PhoneMockup from "../../../../components/PhoneMockup";
 import { useEffect, useState } from "react";
 import useProfileData from "@/hooks/useProfileData";
 import LinkForm from "../LinkForm";
@@ -10,8 +10,8 @@ import ModalLogin from "@/components/ModalAlert";
 
 const LinkContainer = () => {
   useUserIdFromLocalStorage();
-  const [showPhoneMockup, setShowPhoneMockup] = useState<boolean>(true);
   useLinksData();
+  const [showPhoneMockup, setShowPhoneMockup] = useState<boolean>(true);
   const { showModalLogin } = useProfileData();
 
   useEffect(() => {
