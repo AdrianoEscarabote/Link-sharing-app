@@ -127,7 +127,7 @@ const ImageUpload = () => {
   return (
     <>
       <div className="relative w-[193px] bg-light_purple h-[193px] rounded-xl">
-        {selectedImage === undefined ? (
+        {selectedImage === undefined && profileImageUrl === "" ? (
           <div className="absolute w-[193px] h-[193px] flex items-center justify-center flex-col gap-2 z-30">
             <NextImage
               width={40}
