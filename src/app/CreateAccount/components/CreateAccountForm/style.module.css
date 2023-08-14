@@ -1,0 +1,31 @@
+.input_email {
+  background: url("/assets/icon-email.svg") 1rem no-repeat;
+  padding-left: 2.625rem;
+}
+
+.input_password {
+  background: url("/assets/icon-password.svg") 1rem no-repeat;
+  padding-left: 2.625rem;
+}
+
+.input_email:focus,
+.input_password:focus {
+  background-position: -1.25rem;
+  padding-left: 1rem;
+  outline: 0.0313rem solid #633cff;
+  box-shadow: 0rem 0rem 2rem 0rem rgba(99, 60, 255, 0.25);
+}
+
+@media (max-width: 20rem) {
+  .input_email,
+  .input_password {
+    background-position: 0.375rem;
+    padding-left: 1.75rem;
+  }
+
+  .input_email:focus,
+  .input_password:focus {
+    background-position: -20px;
+    padding-left: 0.625rem;
+  }
+}
