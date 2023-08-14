@@ -14,7 +14,7 @@ import ModalLogin from "@/components/ModalAlert";
 const ProfileContainer = () => {
   useUserIdFromLocalStorage();
   useLinksData();
-  useProfileData();
+  const { showModalLogin } = useProfileData();
 
   const [showPhoneMockup, setShowPhoneMockup] = useState<boolean>(true);
 
@@ -36,7 +36,7 @@ const ProfileContainer = () => {
   return (
     <section className="w-full flex justify-center gap-6">
       {showPhoneMockup && <PhoneMockup />}
-      {/* {showModalLogin ? <ModalLogin /> : null} */}
+      {showModalLogin ? <ModalLogin /> : null}
       <div
         className={`${style.container} p-10 rounded-xl w-full bg-white flex flex-col gap-10 max-w-[808px]`}
       >
