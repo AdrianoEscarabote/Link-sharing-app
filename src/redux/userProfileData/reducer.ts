@@ -42,6 +42,10 @@ const profileDataSlice = createSlice({
       }
     },
 
+    handleResetData: (state, action: PayloadAction) => {
+      return initialState;
+    },
+
     setProfileDetails: (
       state,
       action: PayloadAction<setProfileDetailsProps>
@@ -56,7 +60,12 @@ const profileDataSlice = createSlice({
   },
 });
 
-export const { setProfileDetails, setEmail, setUserId, setProfileImageUrl } =
-  profileDataSlice.actions;
+export const {
+  setProfileDetails,
+  handleResetData,
+  setEmail,
+  setUserId,
+  setProfileImageUrl,
+} = profileDataSlice.actions;
 
 export default profileDataSlice.reducer;
