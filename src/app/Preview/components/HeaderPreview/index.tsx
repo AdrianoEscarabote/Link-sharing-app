@@ -32,6 +32,7 @@ const HeaderPreview = () => {
             className={`${style.link}`}
           />
           <ButtonPrimary
+            showLoadingComponent={false}
             label="Share Link"
             disabled={alertOpen ? true : false}
             type="button"
