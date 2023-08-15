@@ -6,12 +6,24 @@
   "scripts": {
     "dev": "next dev --port 5427",
     "test": "jest",
+    "build": "next build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdrianoEscarabote/Audiophile-e-commerce-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AdrianoEscarabote/Audiophile-e-commerce-website/issues"
+  },
+  "engines": {
+    "node": ">=16.13.0",
+    "npm": ">=9.7.1"
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "AdrianoEscarabote",
+  "license": "MIT",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@types/jest": "^29.5.2",
