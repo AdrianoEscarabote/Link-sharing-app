@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { rootState } from "@/redux/root-reducer-types";
 
 const PreviewCard: React.FC<PreviewCardProps> = ({ img, name, email }) => {
-  const { profileImage } = useSelector(
+  const { profileImageUrl } = useSelector(
     (rootReducer: rootState) => rootReducer.profileDataSlice
   );
 
@@ -18,7 +18,7 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ img, name, email }) => {
       >
         <div className="w-[110px] h-[110px] border-4 border-dark_purple relative rounded-full overflow-hidden">
           <Image
-            src={profileImage}
+            src={profileImageUrl}
             fill
             alt="profile image"
             className="object-cover"
