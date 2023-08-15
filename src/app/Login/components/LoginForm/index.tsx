@@ -8,50 +8,45 @@ import style from "./style.module.css";
 import Input from "../../../../components/Input/index";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setEmail, setUserId } from "@/redux/userProfileData/reducer";
+import { setUserId } from "@/redux/userProfileData/reducer";
 
 const Form = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [showLoadingComponent, setShowLoadingComponent] =
+    useState<boolean>(false);
   const [errorData, setErrorData] = useState("");
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm<IloginTypes>();
 
   const onSubmit = handleSubmit(async (data) => {
     setErrorData("");
+    setShowLoadingComponent(true);
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://link-sharing-backend.vercel.app/auth/login",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       const dataJson = await response.json();
 
       if (response.status === 200) {
-        const token = dataJson.token as string;
-
-        localStorage.getItem("token")
-          ? null
-          : localStorage.setItem("token", token);
-
-        dispatch(setUserId({ id: dataJson._id }));
-        dispatch(setEmail({ email: dataJson.email }));
-
-        const userId = dataJson._id;
-        localStorage.setItem("id", userId);
-
-        router.push(`/ProfileDetails/${userId}`);
+        router.push(`/ProfileDetails`);
 
         setErrorData("");
       } else {
         setErrorData(dataJson.msg);
+        setShowLoadingComponent(false);
       }
     } catch (error) {
       console.error("Ocorreu um erro:", error);
@@ -127,7 +122,12 @@ const Form = () => {
             </span>
           )}
         </label>
-        <ButtonPrimary label="Login" disabled={false} type={"submit"} />
+        <ButtonPrimary
+          showLoadingComponent={showLoadingComponent}
+          label="Login"
+          disabled={false}
+          type={"submit"}
+        />
       </fieldset>
     </form>
   );
