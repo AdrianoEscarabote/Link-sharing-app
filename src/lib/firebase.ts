@@ -1,8 +1,8 @@
-const { initializeApp } = require("firebase/app")
-const { getStorage } = require("firebase/storage")
+import { initializeApp } from "firebase/app"
+import { getStorage } from "firebase/storage"
 
-const apiKey = process.env.API_KEY;
-const authDomain = process.env.AUTH_DOMAIN;
+const apiKey = process.env.API_KEY
+const authDomain = process.env.AUTH_DOMAIN
 const projectId = process.env.PROJECT_ID
 const storageBucket = process.env.STORAGE_BUCKET
 const messagingSenderId = process.env.MESSAGING_SENDER_ID
@@ -16,11 +16,11 @@ const firebaseConfig = {
   storageBucket,
   messagingSenderId,
   appId,
-  measurementId
+  measurementId,
 }
 
 const app = initializeApp(firebaseConfig)
 
 const storage = getStorage(app)
 
-module.exports = storage
+export default storage
