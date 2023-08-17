@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const LinkSchema = require("../schema/Link");
+import mongoose from "mongoose"
+import LinkSchema from "./Link"
 
 const UserSchema = new mongoose.Schema({
   email: String,
@@ -10,6 +10,6 @@ const UserSchema = new mongoose.Schema({
   profileImageName: String,
   previewEmail: String,
   links: [LinkSchema],
-});
+})
 
-module.exports = UserSchema;
+export default UserSchema
