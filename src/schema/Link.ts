@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 const LinkSchema = new mongoose.Schema({
   id: String,
   platform: String,
   link: String,
-});
+})
 
-module.exports = LinkSchema;
+export default LinkSchema
