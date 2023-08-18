@@ -21,14 +21,17 @@ const LinkForm = () => {
     const setData = async () => {
       setAlertOpen(true);
       setShowLoadingComponent(true);
-      await fetch(`https://localhost:3000/profile/setLinks`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ links }),
-      });
+      await fetch(
+        `https://graceful-leggings-worm.cyclic.app/profile/setLinks`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ links }),
+        }
+      );
       setShowLoadingComponent(false);
     };
     setData();

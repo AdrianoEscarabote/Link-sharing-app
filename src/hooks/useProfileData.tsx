@@ -17,10 +17,13 @@ const useProfileData = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch("https://localhost:3000/profile/getData", {
-          method: "POST",
-          credentials: "include", // Certifique-se de incluir os cookies
-        });
+        const response = await fetch(
+          "https://graceful-leggings-worm.cyclic.app/profile/getData",
+          {
+            method: "POST",
+            credentials: "include", // Certifique-se de incluir os cookies
+          }
+        );
 
         if (response.status === 401) {
           setShowModalLogin(true);

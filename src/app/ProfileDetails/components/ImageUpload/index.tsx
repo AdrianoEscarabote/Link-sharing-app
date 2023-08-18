@@ -63,7 +63,7 @@ const ImageUpload = () => {
         formData.append("profileImage", selectedImage);
 
         const response = await fetch(
-          `https://localhost:3000/profile/setProfileImageUrl`,
+          `https://graceful-leggings-worm.cyclic.app/profile/setProfileImageUrl`,
           {
             method: "PUT",
             credentials: "include",

@@ -8,10 +8,13 @@ const useLinksData = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch(`https://localhost:3000/profile/links`, {
-          method: "GET",
-          credentials: "include",
-        });
+        const response = await fetch(
+          `https://graceful-leggings-worm.cyclic.app/profile/links`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         if (response.status === 401) {
           return;

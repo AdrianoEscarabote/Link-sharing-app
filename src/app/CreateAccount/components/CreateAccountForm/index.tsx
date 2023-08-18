@@ -8,7 +8,7 @@ import Input from "../../../../components/Input/index";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const Form = () => {
+const CreateAccountForm = () => {
   const router = useRouter();
   const [showLoadinComponent, setShowLoadingComponent] =
     useState<boolean>(false);
@@ -22,14 +22,17 @@ const Form = () => {
   const onSubmit = handleSubmit(async (data) => {
     setShowLoadingComponent(true);
     try {
-      const response = await fetch("https://localhost:3000/auth/register", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://graceful-leggings-worm.cyclic.app/auth/register",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       const dataJson = await response.json();
 
@@ -150,4 +153,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default CreateAccountForm;

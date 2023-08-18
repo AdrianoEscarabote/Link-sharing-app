@@ -7,10 +7,13 @@ const useUserAuthenticated = () => {
 
   useEffect(() => {
     const callApi = async () => {
-      const response = await fetch(`https://localhost:3000/auth/checkToken`, {
-        method: "GET",
-        credentials: "include",
-      });
+      const response = await fetch(
+        `https://graceful-leggings-worm.cyclic.app/auth/checkToken`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
 
       if (response.status === 200) {
         setError(false);
