@@ -19,13 +19,13 @@ const app = express()
 // configures the color to allow only one origin
 const corsOptions = {
   credentials: true,
-  origin: "https://link-sharing-app-alpha.vercel.app/",
+  origin: "https://link-sharing-app-alpha.vercel.app",
 }
 
 app.use(function (req: Request, res: Response, next: NextFunction) {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://link-sharing-app-alpha.vercel.app/",
+    "https://link-sharing-app-alpha.vercel.app",
   )
   res.header("Access-Control-Allow-Credentials", "true")
   next()
@@ -34,6 +34,10 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 app.use(cors(corsOptions))
 app.use(cookieParser())
 app.use(express.json())
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello world!")
+})
 
 // auth
 import authRouter from "./routes/authRouter"
