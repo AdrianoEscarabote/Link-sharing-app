@@ -5,17 +5,14 @@ dotenv.config()
 // mongoose
 import mongoose from "mongoose"
 
-const dbUser = process.env.DB_USER
-const dbPassword = process.env.DB_PASS
+const MONGODB_URL = process.env.MONGODB_URL
 
 mongoose.Promise = global.Promise
 
 export const connectToDatabase = async (): Promise<void> => {
   try {
     await mongoose
-      .connect(
-        `mongodb+srv://${dbUser}:${dbPassword}@cluster0.hm1yjmm.mongodb.net/?retryWrites=true&w=majority`,
-      )
+      .connect(`${MONGODB_URL}`)
       .then(() => {
         console.log("Conectou ao banco")
       })
