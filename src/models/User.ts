@@ -1,6 +1,13 @@
-import mongoose from "mongoose"
-import UserSchema from "@/schema/User"
+import { LinkType } from "./Link"
 
-const User = mongoose.model("User", UserSchema)
-
-export default User
+export interface UserTypes {
+  email: string
+  password: string
+  id: string
+  firstName: string
+  lastName: string
+  profileImageUrl: string
+  profileImageName: string
+  previewEmail: string
+  links: LinkType[]
+}
