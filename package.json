@@ -25,8 +25,8 @@
     "firebase": "^10.1.0",
     "jsonwebtoken": "^9.0.1",
     "mongodb": "^5.8.0",
-    "mongoose": "^7.3.4",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
