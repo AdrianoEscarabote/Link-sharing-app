@@ -1,16 +1,15 @@
+// express
 import express from "express"
+
+// routes
 import setProfileDetailsRoute from "./profile/setProfileDetails"
-import setProfileImageUrlRoute from "./profile/setProfileImageUrl"
-import getDataRoute from "./profile/getData"
-import linksRoute from "./profile/links"
-import setLinksRoute from "./profile/setLinks"
+import getProfileDataRoute from "./profile/getProfileData"
+import setProfileImageRoute from "./profile/setProfileImageUrl"
 
 const profileRouter = express.Router()
 
-profileRouter.use("/setProfileImageUrl", setProfileImageUrlRoute)
+profileRouter.use("/getProfileData", getProfileDataRoute)
 profileRouter.use("/setProfileDetails", setProfileDetailsRoute)
-profileRouter.use("/getData", getDataRoute)
-profileRouter.use("/links", linksRoute)
-profileRouter.use("/setLinks", setLinksRoute)
+profileRouter.use("/setProfileImage", setProfileImageRoute)
 
 export default profileRouter
