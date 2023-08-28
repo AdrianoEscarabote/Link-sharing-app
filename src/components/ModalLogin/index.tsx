@@ -2,14 +2,13 @@
 
 import { useEffect } from "react";
 import style from "./style.module.css";
+import LoadingComponent from "../LoadingComponent";
 
 const ModalLogin = () => {
   useEffect(() => {
-    // Ao abrir o modal, definimos o foco no próprio modal para melhorar a acessibilidade
     const modalElement = document.getElementById("modal-overlay");
     modalElement?.focus();
 
-    // Gerenciar o foco para evitar que o usuário navegue para fora do modal enquanto ele estiver aberto
     const handleTabKey = (e) => {
       const focusableElements = modalElement?.querySelectorAll(
         'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
@@ -59,6 +58,7 @@ const ModalLogin = () => {
             You will be redirected to the login page.
           </span>
         </h1>
+        <LoadingComponent />
         <button></button>
       </section>
     </div>
