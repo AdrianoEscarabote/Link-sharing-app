@@ -1,25 +1,29 @@
 // express
 import express from "express"
-const getProfileDataRoute = express.Router()
 
 // middlewares
 import checkToken from "@/middlewares/checktoken"
 
-// profile user controller
+// models
 import { ProfileUserController } from "@/controllers/profile-user/profile-user"
-
-// profile user repository
+// repository
 import { MongoProfileUserRepository } from "@/repositories/profile-user/mongo-profile-user"
 
+const getProfileDataRoute = express.Router()
+
 getProfileDataRoute.get("/", checkToken, async (req, res) => {
+  const id = req.cookies.id as string
   const mongoProfileUserRepository = new MongoProfileUserRepository()
 
   const profileUserController = new ProfileUserController(
     mongoProfileUserRepository,
   )
+  const bodyFormated = {
+    id,
+  }
 
   const { body, statusCode } = await profileUserController.getProfileData({
-    body: req.body,
+    body: bodyFormated,
   })
 
   return res.status(statusCode).send(body)

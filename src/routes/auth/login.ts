@@ -1,14 +1,12 @@
+// controller
+import { LoginUserController } from "@/controllers/login-user/login-user"
+// repository
+import { MongoLoginUserRepository } from "@/repositories/login-user/mongo-login-user"
+
 // express
 import express from "express"
 const loginRoute = express.Router()
 
-// login user controller
-import { LoginUserController } from "@/controllers/login-user/login-user"
-
-// login user repository
-import { MongoLoginUserRepository } from "@/repositories/login-user/mongo-login-user"
-
-// Login User
 loginRoute.post("/", async (req, res) => {
   const mongoLoginUserRepository = new MongoLoginUserRepository()
 

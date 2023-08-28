@@ -1,43 +1,29 @@
+// controller
+import { ChecktokenController } from "@/controllers/checktoken/checktoken"
+// repository
+import { ChecktokenRepository } from "@/repositories/checktoken/mongo-checktoken"
 // express
-import express from "express"
-import { Request, Response } from "express"
-
-// json web token
-import { verify, Secret } from "jsonwebtoken"
-
-// models
-import User from "@/models/User"
-
+import express, { Request, Response } from "express"
 const checkTokenRoute = express.Router()
 
 checkTokenRoute.get("/", async (req: Request, res: Response) => {
-  try {
-    const token = req.cookies.token
-    const id = req.cookies.id
+  const token = req.cookies.token
+  const id = req.cookies.id
 
-    if (!token && !id) {
-      return res.status(404).json({
-        msg: "error!",
-      })
-    }
-
-    const user = await User.findById(id)
-
-    if (!user) {
-      return res.status(404).json({ msg: "error!" })
-    }
-
-    const secret = process.env.SECRET as Secret
-
-    verify(token, secret)
-
-    // Returns user details
-    return res.status(200).json({
-      msg: "success",
-    })
-  } catch (error) {
-    return res.status(500).json({ msg: "Invalid token!" })
+  const bodyFormated = {
+    token,
+    id,
   }
+
+  const checktokenRepository = new ChecktokenRepository()
+
+  const checktokenController = new ChecktokenController(checktokenRepository)
+
+  const { body, statusCode } = await checktokenController.handle({
+    body: bodyFormated,
+  })
+
+  res.status(statusCode).send(body)
 })
 
 export default checkTokenRoute
