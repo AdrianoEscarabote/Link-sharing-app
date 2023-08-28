@@ -9,7 +9,7 @@ import style from "./style.module.css";
 import useProfileData from "@/hooks/useProfileData";
 import useLinksData from "@/hooks/useLinksData";
 import useUserIdFromLocalStorage from "@/hooks/useUserIdFromLocalStorage";
-import ModalLogin from "@/components/ModalAlert";
+import ModalLogin from "@/components/ModalLogin";
 
 const ProfileContainer = () => {
   useUserIdFromLocalStorage();

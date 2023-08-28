@@ -5,8 +5,13 @@ import Image from "next/image";
 import Tab from "../Tab";
 import LinkSecondary from "../LinkSecondary";
 import style from "./style.module.css";
+import { useSelector } from "react-redux";
+import { rootState } from "@/redux/root-reducer-types";
 
 const Header = () => {
+  const { id } = useSelector(
+    (rootReducer: rootState) => rootReducer.profileDataSlice
+  );
   const [showText, setShowText] = useState<boolean>(true);
   const [urlLinkPathImage, setUrlLinkPathImage] = useState(
     "/assets/icon-links-header.svg"
@@ -63,13 +68,13 @@ const Header = () => {
         <div className="flex items-center">
           <Tab
             active={urlLinkPathImage.includes("purple") ? true : false}
-            href="/Links"
+            href={`/Links/${id}`}
             imagePath={urlLinkPathImage}
             label={showText ? "Links" : ""}
           />
           <Tab
             active={urlProfilePathImage.includes("purple") ? true : false}
-            href="/ProfileDetails"
+            href={`/ProfileDetails/${id}`}
             imagePath={urlProfilePathImage}
             label={showText ? "Profile Details" : ""}
             className="flex items-center justify-center"

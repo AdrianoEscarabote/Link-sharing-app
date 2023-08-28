@@ -17,10 +17,13 @@ const SignoutComponent = ({ cancelSignout }: SignoutComponent) => {
 
   useEffect(() => {
     const handleLogout = async () => {
-      const response = await fetch("https://localhost:3000/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://spring-green-lion-vest.cyclic.cloud/auth/logout",
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
       if (response.status === 200) {
         dispatch(handleResetData());
         dispatch(handleResetLinks());
@@ -34,11 +37,9 @@ const SignoutComponent = ({ cancelSignout }: SignoutComponent) => {
   }, [signout]);
 
   useEffect(() => {
-    // Ao abrir o modal, definimos o foco no próprio modal para melhorar a acessibilidade
     const modalElement = document.getElementById("modal-overlay");
     modalElement?.focus();
 
-    // Gerenciar o foco para evitar que o usuário navegue para fora do modal enquanto ele estiver aberto
     const handleTabKey = (e) => {
       const focusableElements = modalElement?.querySelectorAll(
         'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
@@ -93,9 +94,10 @@ const SignoutComponent = ({ cancelSignout }: SignoutComponent) => {
             className={`bg-red text-white BodyM grid place-content-center ${style.hover}`}
           />
           <ButtonSecondary
-            disabled={false}
+            disabled={signout ? true : false}
             onClick={() => cancelSignout(false)}
             label="Cancel"
+            data-testid="cancel-button"
           />
         </div>
       </section>
