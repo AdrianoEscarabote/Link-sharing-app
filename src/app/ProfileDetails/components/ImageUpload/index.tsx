@@ -63,7 +63,7 @@ const ImageUpload = () => {
         formData.append("profileImage", selectedImage);
 
         const response = await fetch(
-          `https://graceful-leggings-worm.cyclic.app/profile/setProfileImageUrl`,
+          `https://spring-green-lion-vest.cyclic.cloud/profile/setProfileImage`,
           {
             method: "PUT",
             credentials: "include",

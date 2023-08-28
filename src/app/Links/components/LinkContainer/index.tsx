@@ -6,7 +6,7 @@ import useProfileData from "@/hooks/useProfileData";
 import LinkForm from "../LinkForm";
 import useLinksData from "@/hooks/useLinksData";
 import useUserIdFromLocalStorage from "@/hooks/useUserIdFromLocalStorage";
-import ModalLogin from "@/components/ModalAlert";
+import ModalLogin from "@/components/ModalLogin";
 
 const LinkContainer = () => {
   useUserIdFromLocalStorage();

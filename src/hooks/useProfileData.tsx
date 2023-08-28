@@ -18,14 +18,14 @@ const useProfileData = () => {
     const getData = async () => {
       try {
         const response = await fetch(
-          "https://graceful-leggings-worm.cyclic.app/profile/getData",
+          "https://spring-green-lion-vest.cyclic.cloud/profile/getProfileData",
           {
-            method: "POST",
-            credentials: "include", // Certifique-se de incluir os cookies
+            method: "GET",
+            credentials: "include",
           }
         );
 
-        if (response.status === 401) {
+        if (response.status !== 200) {
           setShowModalLogin(true);
           setTimeout(() => {
             router.push("/Login");
@@ -34,27 +34,28 @@ const useProfileData = () => {
           return;
         }
 
-        const { user } = await response.json();
+        const { firstName, lastName, previewEmail, profileImageUrl, links } =
+          await response.json();
 
         dispatch(
           setProfileDetails({
-            firstName: user.firstName,
-            lastName: user.lastName,
-            previewEmail: user.previewEmail,
+            firstName,
+            lastName,
+            previewEmail,
           })
         );
 
         dispatch(
           setProfileImageUrl({
-            url: user.profileImageUrl,
+            url: profileImageUrl,
           })
         );
 
-        dispatch(setData(user.links));
+        dispatch(setData(links));
 
         setLoading(false);
       } catch (error) {
-        setError("Erro na requisição: " + error);
+        setError("Request error: " + error);
         setLoading(false);
       }
     };

@@ -8,7 +8,7 @@ const useUserAuthenticated = () => {
   useEffect(() => {
     const callApi = async () => {
       const response = await fetch(
-        `https://graceful-leggings-worm.cyclic.app/auth/checkToken`,
+        `https://spring-green-lion-vest.cyclic.cloud/auth/checkToken`,
         {
           method: "GET",
           credentials: "include",
@@ -19,13 +19,13 @@ const useUserAuthenticated = () => {
         setError(false);
         setTimeout(() => {
           router.push(`/ProfileDetails`);
-        }, 1500);
+        }, 1300);
         return;
       }
       setError(true);
       setTimeout(() => {
         router.push("/Login");
-      }, 1500);
+      }, 1300);
     };
     callApi();
   }, []);

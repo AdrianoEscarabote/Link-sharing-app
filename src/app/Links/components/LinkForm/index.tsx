@@ -22,7 +22,7 @@ const LinkForm = () => {
       setAlertOpen(true);
       setShowLoadingComponent(true);
       await fetch(
-        `https://graceful-leggings-worm.cyclic.app/profile/setLinks`,
+        `https://spring-green-lion-vest.cyclic.cloud/links/setLinks`,
         {
           method: "POST",
           credentials: "include",

@@ -23,7 +23,7 @@ const CreateAccountForm = () => {
     setShowLoadingComponent(true);
     try {
       const response = await fetch(
-        "https://graceful-leggings-worm.cyclic.app/auth/register",
+        "https://spring-green-lion-vest.cyclic.cloud/auth/register",
         {
           method: "POST",
           credentials: "include",
@@ -34,9 +34,9 @@ const CreateAccountForm = () => {
         }
       );
 
-      const dataJson = await response.json();
+      /* const dataJson = await response.json(); */
 
-      if (response.ok && dataJson.success) {
+      if (response.ok) {
         router.push(`/ProfileDetails`);
       }
     } catch (error) {

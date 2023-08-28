@@ -7,10 +7,8 @@ import ButtonPrimary from "../../../../components/ButtonPrimary/index";
 import style from "./style.module.css";
 import Input from "../../../../components/Input/index";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 const Form = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const [showLoadingComponent, setShowLoadingComponent] =
     useState<boolean>(false);
@@ -26,7 +24,7 @@ const Form = () => {
     setShowLoadingComponent(true);
     try {
       const response = await fetch(
-        "https://graceful-leggings-worm.cyclic.app/auth/login",
+        "https://spring-green-lion-vest.cyclic.cloud/auth/login",
         {
           method: "POST",
           credentials: "include",
@@ -37,14 +35,11 @@ const Form = () => {
         }
       );
 
-      const dataJson = await response.json();
-
       if (response.status === 200) {
         router.push(`/ProfileDetails`);
-
         setErrorData("");
       } else {
-        setErrorData(dataJson.msg);
+        setErrorData("User not found");
         setShowLoadingComponent(false);
       }
     } catch (error) {

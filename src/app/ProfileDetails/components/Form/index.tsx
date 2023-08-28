@@ -56,7 +56,7 @@ const Form = () => {
     };
 
     const response = await fetch(
-      `https://graceful-leggings-worm.cyclic.app/profile/setProfileDetails`,
+      `https://spring-green-lion-vest.cyclic.cloud/profile/setProfileDetails`,
       {
         method: "PUT",
         credentials: "include",

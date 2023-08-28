@@ -9,24 +9,20 @@ const useLinksData = () => {
     const getData = async () => {
       try {
         const response = await fetch(
-          `https://graceful-leggings-worm.cyclic.app/profile/links`,
+          `https://spring-green-lion-vest.cyclic.cloud/links/getLinks`,
           {
             method: "GET",
             credentials: "include",
           }
         );
 
-        if (response.status === 401) {
+        if (response.status !== 200) {
           return;
         }
 
-        const links = await response.json();
+        const user = await response.json();
 
-        if (links.msg === "links vazio!") {
-          return;
-        }
-
-        dispatch(setData(links.links));
+        dispatch(setData(user.links));
       } catch (error) {
         console.error(error);
       }
