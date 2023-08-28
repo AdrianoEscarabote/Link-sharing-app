@@ -1,12 +1,11 @@
-// database
-import { startApp } from "./config/database"
-
-// express
-import express from "express"
-import { Request, Response, NextFunction } from "express"
-
 // env
 import { config } from "dotenv"
+
+// database
+import { MongoClient } from "./database/mongo"
+
+// express
+import express, { Request, Response, NextFunction } from "express"
 
 // cookie-parser
 import cookieParser from "cookie-parser"
@@ -20,11 +19,10 @@ const corsOptions = {
   origin: "https://link-sharing-app-alpha.vercel.app",
 }
 
-// auth
+// routers
 import authRouter from "./routes/authRouter"
-
-// profile
 import profileRouter from "./routes/profileRouter"
+import userLinksRouter from "./routes/userLinksRouter"
 
 const main = async () => {
   config()
@@ -32,9 +30,7 @@ const main = async () => {
   const app = express()
 
   app.use(express.json())
-
-  await startApp()
-
+  app.use(cookieParser())
   app.use(cors(corsOptions))
   app.use(function (req: Request, res: Response, next: NextFunction) {
     res.header(
@@ -44,15 +40,16 @@ const main = async () => {
     res.header("Access-Control-Allow-Credentials", "true")
     next()
   })
-  app.use(cookieParser())
+
+  await MongoClient.connect()
 
   app.get("/", (req: Request, res: Response) => {
     res.send("Hello world!")
   })
 
   app.use("/auth", authRouter)
-
   app.use("/profile", profileRouter)
+  app.use("/links", userLinksRouter)
 
   const port = 8000
 
