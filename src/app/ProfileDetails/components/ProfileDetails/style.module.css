@@ -1,0 +1,7 @@
+@media (max-width: 31.25rem) {
+  .container {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+  }
+}

@@ -7,7 +7,7 @@ export const metadata = {
 
 const ProfileDetailsPage = () => {
   return (
-    <div className="wrapper bg-almost_white min-h-screen w-full p-6">
+    <div className="wrapper wrapper_nopd bg-almost_white min-h-screen w-full p-6">
       <Header />
       <main className="mt-6">
         <ProfileContainer />

@@ -1,7 +1,10 @@
 .email {
   word-break: break-all;
 }
-
+.image {
+  width: 19.1875rem !important;
+  height: 39.4375rem !important;
+}
 .container::-webkit-scrollbar-track {
   background: transparent;
   display: none !important;

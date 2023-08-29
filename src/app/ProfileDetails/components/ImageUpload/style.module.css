@@ -17,3 +17,11 @@
     rgba(0, 0, 0, 0.5) 100%
   );
 }
+
+@media (max-width: 41.25rem) {
+  .container_upload_image,
+  .profileImage {
+    left: 0rem !important;
+    bottom: 0.125rem;
+  }
+}

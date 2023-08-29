@@ -7,5 +7,6 @@
 @media (max-width: 27.5rem) {
   .container {
     padding: 1rem !important;
+    gap: 0.625rem;
   }
 }

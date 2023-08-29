@@ -163,7 +163,9 @@ const ImageUpload = () => {
         )}
 
         {profileImageUrl && (
-          <div className="z-20 absolute w-[193px] h-[193px] flex items-center justify-center flex-col gap-2 rounded-xl overflow-hidden">
+          <div
+            className={`${style.profileImage} z-20 absolute w-[193px] h-[193px] flex items-center justify-center flex-col gap-2 rounded-xl overflow-hidden`}
+          >
             <NextImage
               fill
               src={profileImageUrl}

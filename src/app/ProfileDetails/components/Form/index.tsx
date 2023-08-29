@@ -91,7 +91,7 @@ const Form = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit} className="bg-almost_white p-5">
+      <form onSubmit={onSubmit} className="bg-almost_white p-5 rounded-xl">
         <fieldset className="flex flex-col gap-3">
           <legend className="sr-only">enter your information</legend>
 

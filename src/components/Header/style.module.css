@@ -19,3 +19,13 @@
     max-width: 3.25rem !important;
   }
 }
+
+@media (max-width: 20rem) {
+  .header nav div a {
+    display: grid;
+    place-content: center;
+    padding: 0rem;
+    height: 3.125rem;
+    width: 3.125rem !important;
+  }
+}

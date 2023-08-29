@@ -119,3 +119,9 @@ select {
     padding: 1rem !important;
   }
 }
+
+@media (max-width: 21.25rem) {
+  .wrapper_nopd {
+    padding: 0rem !important;
+  }
+}

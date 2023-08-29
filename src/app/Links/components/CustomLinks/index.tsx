@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { PlatformsName, rootState } from "@/redux/root-reducer-types";
 import { useDispatch } from "react-redux";
 import { changeValue, removeLink, setNewLink } from "@/redux/userLinks/reducer";
+import style from "./style.module.css";
 
 const CustomLink = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,9 @@ const CustomLink = () => {
 
   return (
     <section>
-      <h1 className="HeadingM text-almost_dark">Customize your links</h1>
+      <h1 className={`${style.title} HeadingM text-almost_dark`}>
+        Customize your links
+      </h1>
       <p className="BodyM text-gray">
         Add/edit/remove links below and then share all your profiles with the
         world!
