@@ -14,7 +14,11 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  core: {},
   staticDirs: ["../public"],
+  typescript: {
+    reactDocgen: false,
+  },
 };
 
 export default config;
