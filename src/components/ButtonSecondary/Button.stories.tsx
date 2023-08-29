@@ -3,7 +3,7 @@ import { ButtonProps } from "./ButtonProps";
 import ButtonSecondary from ".";
 
 export default {
-  title: "components/shared/ButtonSecondary",
+  title: "components/ButtonSecondary",
   component: ButtonSecondary,
   tags: ["autodocs"],
   args: {

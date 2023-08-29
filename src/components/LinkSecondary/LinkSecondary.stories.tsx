@@ -3,7 +3,7 @@ import { LinkSecondaryProps } from "./LinkSecondaryProps";
 import LinkSecondary from ".";
 
 export default {
-  title: "components/shared/LinkSecondary",
+  title: "components/LinkSecondary",
   component: LinkSecondary,
   tags: ["autodocs"],
   args: {

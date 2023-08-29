@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import Input from ".";
 
 export default {
-  title: "components/shared/Input",
+  title: "components/Input",
   component: Input,
   tags: ["autodocs"],
   args: {

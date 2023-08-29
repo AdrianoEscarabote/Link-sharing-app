@@ -3,7 +3,7 @@ import { TabProps } from "./TabProps";
 import Tab from ".";
 
 export default {
-  title: "components/shared/Tab",
+  title: "components/Tab",
   component: Tab,
   tags: ["autodocs"],
   args: {

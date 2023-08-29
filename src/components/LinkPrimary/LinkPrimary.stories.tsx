@@ -3,7 +3,7 @@ import LinkPrimary from ".";
 import { LinkPrimaryProps } from "./LinkPrimaryProps";
 
 export default {
-  title: "components/shared/LinkPrimary",
+  title: "components/LinkPrimary",
   component: LinkPrimary,
   tags: ["autodocs"],
   args: {

@@ -3,7 +3,7 @@ import Button from "./index";
 import { ButtonProps } from "./ButtonProps";
 
 export default {
-  title: "components/shared/ButtonPrimary",
+  title: "components/ButtonPrimary",
   component: Button,
   tags: ["autodocs"],
   args: {

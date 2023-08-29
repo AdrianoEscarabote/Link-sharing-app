@@ -3,7 +3,7 @@ import PreviewLink from "./index";
 import { LinkTypes } from "./LinkTypes";
 
 export default {
-  title: "components/shared/PreviewLink",
+  title: "components/PreviewLink",
   component: PreviewLink,
   tags: ["autodocs"],
   args: {
