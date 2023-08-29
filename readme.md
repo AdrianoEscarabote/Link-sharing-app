@@ -4,29 +4,12 @@ This repository is dedicated to the backend of my link sharing app project from 
 
 ## Contents
 
-- [The challenge](#the-challenge)
-- [Continued development](#continued-development)
-- [Screenshot](#screenshot)
 - [Technologies Used](#technologies-used)
+- [Architecture](#Architecture)
+- [Used Concepts](#used-concepts)
 - [Author](#author)
 - [License](#📝-license)
-
-## The challenge
-
-Users should be able to:
-
-- Create, read, update, delete links and see previews in the mobile mockup
-- Receive validations if the links form is submitted without a URL or with the wrong URL pattern for the platform
-- Drag and drop links to reorder them
-- Add profile details like profile picture, first name, last name, and email
-- Receive validations if the profile details form is saved with no first or last name
-- Preview their devlinks profile and copy the link to their clipboard
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
-- **Bonus**: Save details to a database (build the project as a full-stack app)
-- **Bonus**: Create an account and log in (add user authentication to the full-stack app)
-
-## Continued development
+- [Show your support](#show-your-support)
 
 ## Technologies Used
 
@@ -45,6 +28,18 @@ Users should be able to:
 
 ![Firebase](https://img.shields.io/badge/Firebase-F29D0C?style=for-the-badge&logo=firebase&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+## Architecture
+
+<div align="center">
+ <img src="https://i.imgur.com/RufpQA1.png" />
+</div>
+
+## Used Concepts
+
+- SOLID
+- Dependency Injection
+- Repository Pattern
 
 ## Author
 
