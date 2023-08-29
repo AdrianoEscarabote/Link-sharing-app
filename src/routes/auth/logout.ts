@@ -4,32 +4,24 @@ import express, { Response, Request } from "express"
 // middlewares
 import checkToken from "@/middlewares/checktoken"
 
-// repository
-import { LogoutUserRepository } from "@/repositories/logout-user/mongo-logout-user"
-// controller
-import { LogoutUserController } from "@/controllers/logout-user/logout-user"
-
 const logoutRoute = express.Router()
 
 logoutRoute.post("/", checkToken, async (req: Request, res: Response) => {
   const id = req.cookies.id
+  const token = req.cookies.token
 
-  const bodyFormated = {
-    id,
+  if (!id || !token) {
+    return res.status(400).json({
+      msg: "id or token not found!",
+    })
   }
 
-  const logoutUserRepository = new LogoutUserRepository()
+  res.clearCookie("id")
+  res.clearCookie("token")
 
-  const logoutUserController = new LogoutUserController(logoutUserRepository)
-
-  const { body, statusCode } = await logoutUserController.handle(
-    {
-      body: bodyFormated,
-    },
-    res,
-  )
-
-  res.status(statusCode).send(body)
+  return res.status(200).json({
+    msg: "success!",
+  })
 })
 
 export default logoutRoute
