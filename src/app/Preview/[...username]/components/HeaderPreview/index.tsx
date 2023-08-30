@@ -1,12 +1,14 @@
 "use client";
 
-import ButtonPrimary from "../../../../components/ButtonPrimary/index";
+import ButtonPrimary from "@/components/ButtonPrimary";
 import LinkSecondary from "@/components/LinkSecondary";
 import style from "./style.module.css";
 import { useState } from "react";
 import Alert from "@/components/Alert";
+import usePreviewAuthAndData from "@/hooks/UsePreviewAuthAndData";
 
 const HeaderPreview = () => {
+  const { userData, loggedUser, loading } = usePreviewAuthAndData();
   const [alertOpen, setAlertOpen] = useState(false);
 
   const handleCopyButton = () => {
@@ -24,13 +26,23 @@ const HeaderPreview = () => {
         <nav
           className={`${style.nav} bg-white w-full flex items-center justify-between py-4 px-6 rounded-xl z-50`}
         >
-          <LinkSecondary
-            href="/"
-            disabled={false}
-            label="Back to Editor"
-            type="button"
-            className={`${style.link}`}
-          />
+          {loggedUser ? (
+            <LinkSecondary
+              href="/ProfileDetails"
+              disabled={false}
+              label="Back to Editor"
+              type="button"
+              className={`${style.link}`}
+            />
+          ) : (
+            <LinkSecondary
+              href="/"
+              disabled={false}
+              label="Sign in"
+              type="button"
+              className={`${style.link}`}
+            />
+          )}
           <ButtonPrimary
             showLoadingComponent={false}
             label="Share Link"
