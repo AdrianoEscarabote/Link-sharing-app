@@ -17,6 +17,7 @@ import {
 } from "firebase/storage"
 import storage from "@/lib/firebase"
 import { ObjectId } from "mongodb"
+import { v4 as uuidv4 } from "uuid"
 
 export class MongoProfileUserRepository implements IProfileUserRepository {
   async setProfileUserDetails(
@@ -24,30 +25,61 @@ export class MongoProfileUserRepository implements IProfileUserRepository {
   ): Promise<setProfileUserDetailsReturn> {
     const filter = { _id: new ObjectId(params.id) }
 
-    const update = {
-      $set: {
-        firstName: params.firstName,
-        lastName: params.lastName,
-        previewEmail: params.previewEmail,
-      },
+    const user = await MongoClient.db
+      .collection<MongoUser>("users")
+      .findOne(filter)
+
+    if (!user?.uuid) {
+      const update = {
+        $set: {
+          firstName: params.firstName,
+          lastName: params.lastName,
+          previewEmail: params.previewEmail,
+          uuid: uuidv4(),
+        },
+      }
+      const updateUser = await MongoClient.db
+        .collection<MongoUser>("users")
+        .findOneAndUpdate(filter, update, {
+          returnDocument: "after",
+        })
+
+      if (!updateUser.value) {
+        throw new Error("User does not exist")
+      }
+    } else {
+      const updateUserDetails = {
+        $set: {
+          firstName: params.firstName,
+          lastName: params.lastName,
+          previewEmail: params.previewEmail,
+        },
+      }
+
+      const updateUser = await MongoClient.db
+        .collection<MongoUser>("users")
+        .findOneAndUpdate(filter, updateUserDetails, {
+          returnDocument: "after",
+        })
+
+      if (!updateUser.value) {
+        throw new Error("User does not exist")
+      }
     }
 
     const updatedUser = await MongoClient.db
       .collection<MongoUser>("users")
-      .findOneAndUpdate(filter, update, {
-        returnDocument: "after",
-      })
+      .findOne(filter)
 
-    if (!updatedUser.value) {
-      throw new Error("User does not exist")
-    }
+    if (!updatedUser) throw new Error()
 
-    const { firstName, lastName, previewEmail } = updatedUser.value
+    const { firstName, lastName, previewEmail, uuid } = updatedUser
 
     return {
       firstName,
       lastName,
       previewEmail,
+      uuid,
     }
   }
   async getProfileUserData(
@@ -61,9 +93,11 @@ export class MongoProfileUserRepository implements IProfileUserRepository {
       throw new Error("User not find!")
     }
 
-    const { firstName, lastName, previewEmail, links, profileImageUrl } = user
+    const { uuid, firstName, lastName, previewEmail, links, profileImageUrl } =
+      user
 
     return {
+      uuid,
       firstName,
       lastName,
       previewEmail,
@@ -90,7 +124,7 @@ export class MongoProfileUserRepository implements IProfileUserRepository {
 
     const profileImage = params.file
 
-    // Remove a imagem antiga, se existir
+    // Remove the old image, if it exists
     if (user.profileImageName && user.profileImageUrl) {
       const oldImageRef = ref(
         storage,
