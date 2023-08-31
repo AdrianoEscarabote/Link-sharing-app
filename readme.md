@@ -32,7 +32,7 @@ This repository is dedicated to the backend of my link sharing app project from 
 ## Architecture
 
 <div align="center">
- <img src="https://i.imgur.com/RufpQA1.png" />
+ <img src="https://i.imgur.com/1COB1Lz.png" />
 </div>
 
 ## Used Concepts
