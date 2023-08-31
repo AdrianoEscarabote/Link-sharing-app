@@ -5,6 +5,7 @@ import {
   setProfileDetailsProps,
   setProfileImageUrlTypes,
   setUserIdProps,
+  setPreviewDataProps,
 } from "./profileDataTypes";
 
 const initialState: initialStateTypes = {
@@ -15,6 +16,7 @@ const initialState: initialStateTypes = {
   previewEmail: "",
   id: "",
   links: [],
+  uuid: "",
 };
 
 const profileDataSlice = createSlice({
@@ -50,11 +52,39 @@ const profileDataSlice = createSlice({
       state,
       action: PayloadAction<setProfileDetailsProps>
     ) => {
-      const { firstName, lastName, previewEmail } = action.payload;
+      const { firstName, lastName, previewEmail, uuid } = action.payload;
       if (firstName && lastName && previewEmail) {
         state.firstName = firstName;
         state.lastName = lastName;
         state.previewEmail = previewEmail;
+        state.uuid = uuid;
+      }
+    },
+
+    setPreviewData: (state, action: PayloadAction<setPreviewDataProps>) => {
+      const {
+        firstName,
+        lastName,
+        links,
+        previewEmail,
+        uuid,
+        profileImageUrl,
+      } = action.payload;
+
+      if (
+        firstName &&
+        lastName &&
+        links &&
+        previewEmail &&
+        uuid &&
+        profileImageUrl
+      ) {
+        state.firstName = firstName;
+        state.lastName = lastName;
+        state.links = links;
+        state.previewEmail = previewEmail;
+        state.uuid = uuid;
+        state.profileImageUrl = profileImageUrl;
       }
     },
   },
@@ -66,6 +96,7 @@ export const {
   setEmail,
   setUserId,
   setProfileImageUrl,
+  setPreviewData,
 } = profileDataSlice.actions;
 
 export default profileDataSlice.reducer;

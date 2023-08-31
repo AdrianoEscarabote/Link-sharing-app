@@ -20,6 +20,7 @@ interface profileDataSliceTypes {
   lastName: string;
   previewEmail: string;
   id: string;
+  uuid: string;
 }
 
 interface userLinksSliceTypes {

@@ -10,6 +10,7 @@ interface setProfileDetailsProps {
   firstName: string;
   lastName: string;
   previewEmail: string;
+  uuid: string;
 }
 
 interface setUserIdProps {
@@ -28,7 +29,17 @@ interface initialStateTypes {
   lastName: string;
   previewEmail: string;
   id: string;
+  uuid: string;
   links: LinkTypes[];
+}
+
+interface setPreviewDataProps {
+  firstName: string;
+  lastName: string;
+  previewEmail: string;
+  links: LinkTypes[];
+  uuid: string;
+  profileImageUrl: string;
 }
 
 export {
@@ -38,5 +49,6 @@ export {
   setEmailProps,
   initialStateTypes,
   setUserIdProps,
+  setPreviewDataProps,
   setProfileImageUrlTypes,
 };
