@@ -11,6 +11,7 @@ export interface setProfileUserDetailsReturn {
   firstName: string
   lastName: string
   previewEmail: string
+  uuid?: string
 }
 
 export interface getProfileUserReturn {
@@ -19,6 +20,7 @@ export interface getProfileUserReturn {
   profileImageUrl: string
   links: LinkType[]
   previewEmail: string
+  uuid: string
 }
 
 export interface getProfileUserParams {

@@ -6,6 +6,7 @@ export interface UserTypes {
   id: string
   firstName: string
   lastName: string
+  uuid: string
   profileImageUrl: string
   profileImageName: string
   previewEmail: string
