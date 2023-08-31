@@ -4,3 +4,21 @@
   line-height: 150%;
   padding-bottom: 0.5rem;
 }
+
+@media (min-height: 70rem) {
+  .container {
+    max-height: 43.75rem !important;
+  }
+}
+
+@media (min-height: 82.5rem) {
+  .container {
+    max-height: 50rem !important;
+  }
+}
+
+@media (min-height: 88.75rem) {
+  .container {
+    max-height: 61.25rem !important;
+  }
+}

@@ -16,7 +16,20 @@
   }
 }
 
+.header {
+  position: initial !important;
+}
+
+@media (max-width: 48rem) {
+  .header {
+    position: initial !important;
+  }
+}
+
 @media (max-width: 24.375rem) {
+  .header {
+    padding: 1.25rem !important;
+  }
   .link {
     font-size: 0.875rem !important;
     padding-left: 0.25rem;

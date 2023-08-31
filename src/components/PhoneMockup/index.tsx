@@ -15,7 +15,7 @@ const PhoneMockup = () => {
     useSelector((rootReducer: rootState) => rootReducer.profileDataSlice);
 
   return (
-    <section className="p-6 flex items-center justify-center w-full max-w-[560px] bg-white rounded-xl relative max-h-[84vh]">
+    <section className="p-6 flex items-center justify-center w-full max-w-[560px] bg-white rounded-xl relative">
       <div className="w-[307] h-[631] relative flex items-center justify-center">
         <Image
           className={`${style.image}`}
