@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { rootState } from "@/redux/root-reducer-types";
 
 const Header = () => {
-  const { id } = useSelector(
+  const { id, uuid } = useSelector(
     (rootReducer: rootState) => rootReducer.profileDataSlice
   );
   const [showText, setShowText] = useState<boolean>(true);
@@ -83,8 +83,8 @@ const Header = () => {
 
         <LinkSecondary
           maxWidth="114px"
-          href="/Preview"
-          disabled={false}
+          href={`/Preview/${uuid}`}
+          disabled={uuid ? false : true}
           className={`${style.link}`}
           label={showText ? "Preview" : ""}
         />

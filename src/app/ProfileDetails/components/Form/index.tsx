@@ -42,6 +42,7 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
     setValue,
+    setError,
   } = useForm<FormProps>();
 
   const onSubmit = handleSubmit(async (data) => {
@@ -75,6 +76,7 @@ const Form = () => {
         firstName,
         lastName,
         previewEmail,
+        uuid: responseData.uuid,
       })
     );
 
@@ -88,6 +90,22 @@ const Form = () => {
       setAlertOpen(false);
     }, 2000);
   });
+
+  const handleInputChange = (
+    inputName: "firstName" | "lastName" | "previewEmail",
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (inputName === "previewEmail") {
+      const cleanedValue = e.target.value.replace(/\s/g, "");
+      setValue(inputName, cleanedValue);
+    } else {
+      const cleanedValue = e.target.value.replace(
+        /[\s~`!@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=-]/g,
+        ""
+      );
+      setValue(inputName, cleanedValue);
+    }
+  };
 
   return (
     <>
@@ -119,6 +137,7 @@ const Form = () => {
                   message: "Can’t be empty",
                 },
               })}
+              onChange={(ev) => handleInputChange("firstName", ev)}
             />
             {errors.firstName && (
               <span
@@ -155,6 +174,7 @@ const Form = () => {
                   message: "Can’t be empty",
                 },
               })}
+              onChange={(ev) => handleInputChange("lastName", ev)}
             />
             {errors.lastName && (
               <span
@@ -189,6 +209,7 @@ const Form = () => {
                   message: "Invalid email!",
                 },
               })}
+              onChange={(ev) => handleInputChange("previewEmail", ev)}
             />
             {errors.previewEmail && (
               <span
