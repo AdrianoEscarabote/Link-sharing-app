@@ -25,3 +25,8 @@
     opacity: 1;
   }
 }
+
+.button_disabled {
+  pointer-events: none;
+  opacity: 0.4 !important;
+}

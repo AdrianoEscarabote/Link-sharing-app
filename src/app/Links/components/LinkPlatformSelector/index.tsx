@@ -6,10 +6,10 @@ import Input from "@/components/Input";
 import { MouseEventHandler, useEffect, useState } from "react";
 import Select from "../Select";
 import { LinkPlatformSelectorTypes } from "./LinkPlatformSelectorProps";
-import { isURL } from "validator";
 import { PlatformsName } from "@/redux/root-reducer-types";
 import { useDispatch } from "react-redux";
 import { changeSelectValue, changeValue } from "@/redux/userLinks/reducer";
+import useLinksValid from "@/hooks/useLinksValid";
 
 const LinkPlatformSelector = ({
   removeLink,
@@ -17,19 +17,13 @@ const LinkPlatformSelector = ({
   link,
   platform,
 }: LinkPlatformSelectorTypes) => {
+  const { isUnavailableUrl } = useLinksValid();
   const dispatch = useDispatch();
-  const [errorInputLink, setErrorInputLink] = useState<boolean>(false);
   const [platformValue, setPlatformValue] = useState<PlatformsName>(platform);
   const [linkValue, setLinkValue] = useState<string>(link);
 
   const handleClickRemove: MouseEventHandler<HTMLButtonElement> = () =>
     removeLink(id);
-
-  // Sua função de validação do link social
-  function validateSocialLink(link: string): boolean {
-    // A função isURL irá verificar se o link é uma URL válida
-    return isURL(link, { require_protocol: true });
-  }
 
   useEffect(() => {
     dispatch(
@@ -38,11 +32,6 @@ const LinkPlatformSelector = ({
         newValue: linkValue,
       })
     );
-  }, [linkValue]);
-
-  useEffect(() => {
-    const isValid = validateSocialLink(linkValue);
-    setErrorInputLink(isValid);
   }, [linkValue]);
 
   useEffect(() => {
@@ -107,7 +96,7 @@ const LinkPlatformSelector = ({
           value={linkValue}
           onChange={(ev) => setLinkValue(ev.currentTarget.value)}
           placeholder="e.g. https://www.github.com/johnappleseed"
-          error={!errorInputLink}
+          error={isUnavailableUrl}
           errorMessage="invalid link!"
         />
       </label>

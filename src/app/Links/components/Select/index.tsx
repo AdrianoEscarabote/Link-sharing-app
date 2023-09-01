@@ -4,6 +4,8 @@ import Image from "next/image";
 import style from "./style.module.css";
 import { useEffect, useState } from "react";
 import { OptionsSelectedTypes, SelectProps } from "./SelectTypes";
+import { useSelector } from "react-redux";
+import { PlatformsName, rootState } from "@/redux/root-reducer-types";
 
 const platformsName = [
   { name: "GitHub", img: "github" },
@@ -22,6 +24,9 @@ const platformsName = [
 ];
 
 const Select = ({ id, platformSelected, onChange }: SelectProps) => {
+  const { links } = useSelector(
+    (rootReducer: rootState) => rootReducer.userLinksSlice
+  );
   const [optionsOpen, setOptionsOpen] = useState<boolean>(false);
   const [optionsSelected, setOptionsSelected] = useState<OptionsSelectedTypes>({
     name: "GitHub",
@@ -39,10 +44,20 @@ const Select = ({ id, platformSelected, onChange }: SelectProps) => {
     }
   }, []);
 
+  const handleBlockOptionsAlreadySelected = () => {
+    const selectedPlatformNames = links.map((link) => link.platform);
+
+    return platformsName.map((platform) => ({
+      ...platform,
+      disabled: selectedPlatformNames.includes(platform.name as PlatformsName),
+    }));
+  };
+
   const handleSelecteOptions = (name: string) => {
     const selectedOption = platformsName.find(
       (platform) => platform.name === name
     );
+
     if (selectedOption) {
       setOptionsSelected(selectedOption);
     }
@@ -91,13 +106,16 @@ const Select = ({ id, platformSelected, onChange }: SelectProps) => {
           className={`${style.container} custom_scrollbar z-50 px-4 absolute top-12 flex flex-col items-start bg-white border border-1 border-light_gray w-full rounded-lg h-96 overflow-y-scroll `}
           style={{ boxShadow: "0px 0px 32px 0px rgba(0, 0, 0, 0.10)" }}
         >
-          {platformsName.map((platform, index) => (
+          {handleBlockOptionsAlreadySelected().map((platform, index) => (
             <button
               type="button"
               role="button"
               key={index}
+              disabled={platform.disabled}
               onClick={(e) => handleSelecteOptions(e.currentTarget.innerText)}
-              className={`${style.filter} ${
+              className={`${platform.disabled ? style.button_disabled : ""} ${
+                style.filter
+              } ${
                 optionsSelected.name === platform.name ? style.selected : ""
               } w-full py-3 border-1 border-b border-light_gray BodyM text-almost_dark flex items-center gap-3`}
             >

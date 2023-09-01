@@ -6,8 +6,11 @@ import { useSelector } from "react-redux";
 import { rootState } from "@/redux/root-reducer-types";
 import { FormEvent, useState } from "react";
 import Alert from "@/components/Alert";
+import style from "./style.module.css";
+import useLinksValid from "@/hooks/useLinksValid";
 
 const LinkForm = () => {
+  const { isUnavailableUrl } = useLinksValid();
   const [alertOpen, setAlertOpen] = useState<boolean>(false);
   const { links } = useSelector(
     (rootReducer: rootState) => rootReducer.userLinksSlice
@@ -42,15 +45,19 @@ const LinkForm = () => {
 
   return (
     <>
-      <section className="bg-white rounded-xl max-w-[808px] w-full min-h-[78vh]">
+      <section
+        className={"bg-white rounded-xl max-w-[808px] w-full min-h-full"}
+      >
         <form onSubmit={onSubmit}>
-          <div className="p-10 flex flex-col gap-6 relative">
+          <div
+            className={`${style.container_form} p-10 flex flex-col gap-6 relative`}
+          >
             <CustomLink />
           </div>
           <div className="flex items-end justify-end w-full py-6 px-10 border-1 border-t border-light_gray">
             <ButtonPrimary
               maxWidth="91px"
-              disabled={false}
+              disabled={isUnavailableUrl}
               type="submit"
               label="Save"
               showLoadingComponent={showLoadingComponent}

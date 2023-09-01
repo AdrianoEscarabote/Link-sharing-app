@@ -77,7 +77,9 @@ const CustomLink = () => {
         onClick={handleAddNewLink}
       />
 
-      <div className="relative overflow-y-scroll max-h-[46vh] custom_scrollbar flex flex-col gap-6 mt-6">
+      <div
+        className={`${style.container} relative overflow-y-scroll max-h-[46vh] min-h-[30rem] custom_scrollbar flex flex-col gap-6 mt-6`}
+      >
         {links.length === 0 && <GetYouStarted />}
 
         {links.map((item) => (
