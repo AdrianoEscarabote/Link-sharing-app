@@ -34,14 +34,21 @@ const useProfileData = () => {
           return;
         }
 
-        const { firstName, lastName, previewEmail, profileImageUrl, links } =
-          await response.json();
+        const {
+          firstName,
+          lastName,
+          previewEmail,
+          uuid,
+          profileImageUrl,
+          links,
+        } = await response.json();
 
         dispatch(
           setProfileDetails({
             firstName,
             lastName,
             previewEmail,
+            uuid,
           })
         );
 
