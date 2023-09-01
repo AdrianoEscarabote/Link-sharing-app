@@ -6,15 +6,20 @@ import style from "./style.module.css";
 import { useSelector } from "react-redux";
 import { rootState } from "@/redux/root-reducer-types";
 
-const PreviewCard: React.FC<PreviewCardProps> = ({ img, name, email }) => {
-  const { profileImageUrl } = useSelector(
+const PreviewCard = () => {
+  const { profileImageUrl, previewEmail, firstName, lastName } = useSelector(
     (rootReducer: rootState) => rootReducer.profileDataSlice
+  );
+  const { links } = useSelector(
+    (rootReducer: rootState) => rootReducer.userLinksSlice
   );
 
   return (
-    <main className={`min-h-screen flex items-center justify-center`}>
+    <main
+      className={`${style.main} min-h-full flex items-center justify-center`}
+    >
       <div
-        className={`${style.card} flex flex-col items-center justify-start bg-red rounded-3xl w-full max-w-[349px] min-h-[529px] py-[48px] px-[56px] z-40 mb-5`}
+        className={`${style.card} flex flex-col items-center justify-start bg-white rounded-3xl w-full max-w-[349px] min-h-[529px] py-[48px] px-[56px] z-40 mb-5`}
       >
         <div className="w-[110px] h-[110px] border-4 border-dark_purple relative rounded-full overflow-hidden">
           <Image
@@ -24,32 +29,19 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ img, name, email }) => {
             className="object-cover"
           />
         </div>
-        <h1 className="HeadingM">{name}</h1>
-        <p className="BodyM mt-2">{email}</p>
+        <h1 className="HeadingM text-almost_dark">{firstName + lastName}</h1>
+        <p className="BodyM mt-2">{previewEmail}</p>
 
         <ul className="mt-14 flex flex-col gap-5">
-          <li>
-            <PreviewLink
-              size="large"
-              label="GitHub"
-              link="https://github.com/AdrianoEscarabote"
-            />
-          </li>
-
-          <li>
-            <PreviewLink
-              size="large"
-              label="LinkedIn"
-              link="https://www.linkedin.com/in/adriano-escarabote-944b02233/"
-            />
-          </li>
-          <li>
-            <PreviewLink
-              size="large"
-              label="Frontend Mentor"
-              link="https://www.linkedin.com/in/adriano-escarabote-944b02233/"
-            />
-          </li>
+          {links.map((link) => (
+            <li key={link.id}>
+              <PreviewLink
+                size="large"
+                label={link.platform}
+                link={link.link}
+              />
+            </li>
+          ))}
         </ul>
       </div>
     </main>

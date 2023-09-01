@@ -9,11 +9,7 @@ const Preview = () => {
   return (
     <>
       <HeaderPreview />
-      <PreviewCard
-        email="ben@example.com"
-        img="/assets/icon-youtube.svg"
-        name="Ben Wright"
-      />
+      <PreviewCard />
     </>
   );
 };

@@ -22,7 +22,7 @@ const HeaderPreview = () => {
 
   return (
     <>
-      <header className={`fixed top-0 w-full p-6`}>
+      <header className={`${style.header} fixed top-0 w-full p-6`}>
         <nav
           className={`${style.nav} bg-white w-full flex items-center justify-between py-4 px-6 rounded-xl z-50`}
         >
@@ -36,7 +36,7 @@ const HeaderPreview = () => {
             />
           ) : (
             <LinkSecondary
-              href="/"
+              href="/Login"
               disabled={false}
               label="Sign in"
               type="button"
