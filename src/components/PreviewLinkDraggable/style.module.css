@@ -1,0 +1,59 @@
+.GitHub {
+  background: #1a1a1a no-repeat url("/assets/icon-github.svg") !important;
+  background-position: 22px center !important;
+}
+.FrontendMentor {
+  border: 0.0625rem solid #d9d9d9;
+  background: #fff no-repeat url("/assets/icon-frontend-mentor.svg") !important;
+  background-position: 22px center !important;
+  color: #333 !important;
+}
+.FrontendMentor img {
+  filter: invert(46%) sepia(0%) saturate(0%) hue-rotate(161deg) brightness(98%)
+    contrast(91%);
+}
+.Twitter {
+  background: #43b7e9 no-repeat url("/assets/icon-twitter.svg") !important;
+  background-position: 22px center !important;
+}
+.LinkedIn {
+  background: #2d68ff no-repeat url("/assets/icon-linkedin.svg") !important;
+  background-position: 22px center !important;
+}
+.YouTube {
+  background: #ee3939 no-repeat url("/assets/icon-youtube.svg") !important;
+  background-position: 22px center !important;
+}
+.Facebook {
+  background: #2442ac no-repeat url("/assets/icon-facebook.svg") !important;
+  background-position: 22px center !important;
+}
+.Twitch {
+  background: #ee3fc8 no-repeat url("/assets/icon-twitch.svg") !important;
+  background-position: 22px center !important;
+  background-size: 24px !important;
+}
+.Devto {
+  background: #333 no-repeat url("/assets/icon-devto.svg") !important;
+  background-position: 22px center !important;
+}
+.Codewars {
+  background: #8a1a50 no-repeat url("/assets/icon-codewars.svg") !important;
+  background-position: 22px center !important;
+}
+.freeCodeCamp {
+  background: #302267 no-repeat url("/assets/icon-freecodecamp.svg") !important;
+  background-position: 22px center !important;
+}
+.GitLab {
+  background: #eb4925 no-repeat url("/assets/icon-gitlab.svg") !important;
+  background-position: 22px center !important;
+}
+.Hashnode {
+  background: #0330d1 no-repeat url("/assets/icon-hashnode.svg") !important;
+  background-position: 22px center !important;
+}
+.StackOverflow {
+  background: #ec7100 no-repeat url("/assets/icon-stack-overflow.svg") !important;
+  background-position: 22px center !important;
+}
