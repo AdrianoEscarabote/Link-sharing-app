@@ -16,13 +16,19 @@ const usePreviewAuthAndData = () => {
       try {
         const uuidUrl = baseurl.split("/Preview/")[1];
         const [authResponse, profileResponse] = await Promise.all([
-          await fetch(`http://localhost:7000/auth/checkToken`, {
-            method: "GET",
-            credentials: "include",
-          }),
-          await fetch(`http://localhost:7000/Preview/${uuidUrl}`, {
-            method: "GET",
-          }),
+          await fetch(
+            `https://spring-green-lion-vest.cyclic.cloud/auth/checkToken`,
+            {
+              method: "GET",
+              credentials: "include",
+            }
+          ),
+          await fetch(
+            `https://spring-green-lion-vest.cyclic.cloud/Preview/${uuidUrl}`,
+            {
+              method: "GET",
+            }
+          ),
         ]);
         if (authResponse.status === 200) {
           setLoggedUser(true);

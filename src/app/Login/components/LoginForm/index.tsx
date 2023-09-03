@@ -6,13 +6,32 @@ import { useRouter } from "next/navigation";
 import ButtonPrimary from "../../../../components/ButtonPrimary/index";
 import style from "./style.module.css";
 import Input from "../../../../components/Input/index";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Form = () => {
   const router = useRouter();
   const [showLoadingComponent, setShowLoadingComponent] =
     useState<boolean>(false);
   const [errorData, setErrorData] = useState("");
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const response = await fetch(
+        "https://spring-green-lion-vest.cyclic.cloud/auth/checkToken",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      if (response.status === 200) {
+        router.push(`/ProfileDetails`);
+        setErrorData("");
+      }
+    };
+    checkToken();
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -24,7 +43,8 @@ const Form = () => {
     setShowLoadingComponent(true);
     try {
       const response = await fetch(
-        "https://spring-green-lion-vest.cyclic.cloud/auth/login",
+        /* "https://spring-green-lion-vest.cyclic.cloud/auth/login", */
+        "http://localhost:7000/auth/login",
         {
           method: "POST",
           credentials: "include",

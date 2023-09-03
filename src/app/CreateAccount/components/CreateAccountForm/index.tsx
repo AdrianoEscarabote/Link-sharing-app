@@ -6,7 +6,7 @@ import ButtonPrimary from "../../../../components/ButtonPrimary/index";
 import style from "./style.module.css";
 import Input from "../../../../components/Input/index";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CreateAccountForm = () => {
   const router = useRouter();
@@ -18,6 +18,23 @@ const CreateAccountForm = () => {
     getValues,
     formState: { errors },
   } = useForm<ICreateAccountTypes>();
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const response = await fetch(
+        "https://spring-green-lion-vest.cyclic.cloud/auth/checkToken",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      if (response.status === 200) {
+        router.push(`/ProfileDetails`);
+      }
+    };
+    checkToken();
+  }, []);
 
   const onSubmit = handleSubmit(async (data) => {
     setShowLoadingComponent(true);
@@ -33,8 +50,6 @@ const CreateAccountForm = () => {
           body: JSON.stringify(data),
         }
       );
-
-      /* const dataJson = await response.json(); */
 
       if (response.ok) {
         router.push(`/ProfileDetails`);
