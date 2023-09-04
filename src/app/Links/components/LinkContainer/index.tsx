@@ -7,6 +7,8 @@ import useLinksData from "@/hooks/useLinksData";
 import useUserIdFromLocalStorage from "@/hooks/useUserIdFromLocalStorage";
 import ModalLogin from "@/components/ModalLogin";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const LinkContainer = () => {
   useUserIdFromLocalStorage();
@@ -16,11 +18,13 @@ const LinkContainer = () => {
 
   return (
     <section className="flex gap-6 w-full justify-center">
-      {!showPhoneMockup && <PhoneMockup />}
+      <DndProvider backend={HTML5Backend}>
+        {!showPhoneMockup && <PhoneMockup />}
 
-      {showModalLogin ? <ModalLogin /> : null}
+        {showModalLogin ? <ModalLogin /> : null}
 
-      <LinkForm />
+        <LinkForm />
+      </DndProvider>
     </section>
   );
 };

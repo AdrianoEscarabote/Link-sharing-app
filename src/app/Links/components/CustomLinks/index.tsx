@@ -6,7 +6,12 @@ import GetYouStarted from "../GetYouStarted";
 import { useSelector } from "react-redux";
 import { PlatformsName, rootState } from "@/redux/root-reducer-types";
 import { useDispatch } from "react-redux";
-import { changeValue, removeLink, setNewLink } from "@/redux/userLinks/reducer";
+import {
+  changeValue,
+  removeLink,
+  setData,
+  setNewLink,
+} from "@/redux/userLinks/reducer";
 import style from "./style.module.css";
 
 const CustomLink = () => {
@@ -14,6 +19,14 @@ const CustomLink = () => {
   const { links } = useSelector(
     (rootReducer: rootState) => rootReducer.userLinksSlice
   );
+
+  const moveLink = (fromIndex: number, toIndex: number) => {
+    const updatedLinks = [...links];
+    const [movedLink] = updatedLinks.splice(fromIndex, 1);
+    updatedLinks.splice(toIndex, 0, movedLink);
+
+    dispatch(setData(updatedLinks));
+  };
 
   const handleRemoveLink = (idToRemove: string) => {
     dispatch(
@@ -82,16 +95,16 @@ const CustomLink = () => {
       >
         {links.length === 0 && <GetYouStarted />}
 
-        {links.map((item) => (
-          <div>
-            <LinkPlatformSelector
-              removeLink={handleRemoveLink}
-              key={item.id}
-              id={item.id}
-              link={item.link}
-              platform={item.platform}
-            />
-          </div>
+        {links.map((item, index) => (
+          <LinkPlatformSelector
+            removeLink={handleRemoveLink}
+            key={item.id}
+            id={JSON.stringify(index + 1)}
+            index={index}
+            link={item.link}
+            platform={item.platform}
+            moveLink={moveLink}
+          />
         ))}
       </div>
     </section>

@@ -5,7 +5,8 @@ interface LinkPlatformSelectorTypes {
   id: string;
   link: string;
   platform: PlatformsName;
-  /* handleChangeInputLink: (id: string, link: string) => void; */
+  index: number;
+  moveLink: (fromIndex: number, toIndex: number) => void;
 }
 
 export { LinkPlatformSelectorTypes };

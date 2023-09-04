@@ -3,24 +3,46 @@
 import Image from "next/image";
 import style from "./style.module.css";
 import Input from "@/components/Input";
-import { MouseEventHandler, useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useRef, useState } from "react";
 import Select from "../Select";
 import { LinkPlatformSelectorTypes } from "./LinkPlatformSelectorProps";
 import { PlatformsName } from "@/redux/root-reducer-types";
 import { useDispatch } from "react-redux";
 import { changeSelectValue, changeValue } from "@/redux/userLinks/reducer";
 import useLinksValid from "@/hooks/useLinksValid";
+import { useDrag, useDrop } from "react-dnd";
 
 const LinkPlatformSelector = ({
   removeLink,
   id,
   link,
   platform,
+  index,
+  moveLink,
 }: LinkPlatformSelectorTypes) => {
   const { isUnavailableUrl } = useLinksValid();
   const dispatch = useDispatch();
   const [platformValue, setPlatformValue] = useState<PlatformsName>(platform);
   const [linkValue, setLinkValue] = useState<string>(link);
+
+  const linkRef = useRef(null);
+
+  const [, drag] = useDrag({
+    type: "LINK",
+    item: { id, index },
+  });
+
+  const [, drop] = useDrop({
+    accept: "LINK",
+    drop: (draggedItem: LinkPlatformSelectorTypes) => {
+      if (draggedItem.index !== index) {
+        moveLink(draggedItem.index, index);
+      }
+    },
+  });
+
+  drag(linkRef);
+  drop(linkRef);
 
   const handleClickRemove: MouseEventHandler<HTMLButtonElement> = () =>
     removeLink(id);
@@ -50,7 +72,8 @@ const LinkPlatformSelector = ({
   return (
     <div
       draggable
-      className="bg-almost_white rounded-xl p-5 flex flex-col gap-3 z-10"
+      ref={linkRef}
+      className="cursor-grab bg-almost_white rounded-xl p-5 flex flex-col gap-3 z-10"
       id={`${id}`}
     >
       <div className="flex items-center justify-between w-full">
