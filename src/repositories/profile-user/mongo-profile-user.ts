@@ -116,8 +116,6 @@ export class MongoProfileUserRepository implements IProfileUserRepository {
       .collection<MongoUser>("users")
       .findOne(filter)
 
-    console.log("usario primeiro filtro", user)
-
     if (!user) {
       throw new Error()
     }

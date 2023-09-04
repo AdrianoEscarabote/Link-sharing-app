@@ -45,19 +45,7 @@ export class UserLinksRepository implements IUserLinksRepository {
       .collection<MongoUser>("users")
       .findOne(filter)
 
-    console.log("valor do usuario ", user)
-
     if (!user) throw new Error()
-
-    /* const { links } = user
-
-    const linkAlreadyExists = user.links.filter(
-      (link) => link.platform === links.platform,
-    )[0] */
-
-    /* if (linkAlreadyExists) {
-      throw new Error()
-    } */
 
     const updateUser = await MongoClient.db
       .collection<MongoUser>("users")
