@@ -1,12 +1,17 @@
+import { rootState } from "@/redux/root-reducer-types";
 import { setData } from "@/redux/userLinks/reducer";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 const useLinksData = () => {
   const dispatch = useDispatch();
+  const { links } = useSelector(
+    (rootReducer: rootState) => rootReducer.userLinksSlice
+  );
 
-  useEffect(() => {
-    const getData = async () => {
+  const getData = useMemo(
+    () => async () => {
       try {
         const response = await fetch(
           `https://spring-green-lion-vest.cyclic.cloud/links/getLinks`,
@@ -26,8 +31,13 @@ const useLinksData = () => {
       } catch (error) {
         console.error(error);
       }
-    };
-    getData();
+    },
+    []
+  );
+  useEffect(() => {
+    if (links.length === 0) {
+      getData();
+    }
   }, []);
 };
 

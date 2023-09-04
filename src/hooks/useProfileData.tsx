@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import {
   setProfileDetails,
@@ -14,8 +14,8 @@ const useProfileData = () => {
   const [showModalLogin, setShowModalLogin] = useState<boolean>(false);
   const [error, setError] = useState<string | null>();
 
-  useEffect(() => {
-    const getData = async () => {
+  const getData = useMemo(
+    () => async () => {
       try {
         const response = await fetch(
           "https://spring-green-lion-vest.cyclic.cloud/profile/getProfileData",
@@ -65,10 +65,13 @@ const useProfileData = () => {
         setError("Request error: " + error);
         setLoading(false);
       }
-    };
+    },
+    []
+  );
 
+  useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return {
     showModalLogin,
