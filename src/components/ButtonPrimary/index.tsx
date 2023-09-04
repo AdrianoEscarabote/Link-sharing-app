@@ -24,6 +24,7 @@ const ButtonPrimary: React.FC<ButtonProps> = ({
     <button
       style={{ maxWidth: maxWidth ? maxWidth : "" }}
       className={buttonClassName}
+      tabIndex={disabled ? -1 : 0}
       {...props}
     >
       {showLoadingComponent ? <LoadingComponent /> : label}

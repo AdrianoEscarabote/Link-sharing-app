@@ -57,8 +57,10 @@ const LinkForm = () => {
           <div className="flex items-end justify-end w-full py-6 px-10 border-1 border-t border-light_gray">
             <ButtonPrimary
               maxWidth="91px"
-              disabled={isUnavailableUrl}
-              type="submit"
+              disabled={isUnavailableUrl || links.length === 0}
+              type={
+                isUnavailableUrl || links.length === 0 ? "button" : "submit"
+              }
               label="Save"
               showLoadingComponent={showLoadingComponent}
             />

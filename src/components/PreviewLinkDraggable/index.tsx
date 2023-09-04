@@ -59,7 +59,7 @@ const PreviewLinkDraggable: React.FC<LinkTypes> = ({
       ref={linkRef}
       className={`${
         size === "large" ? "h-14" : "h-11"
-      } flex items-center border-none justify-between text-white pl-[54px] BodyM w-60 p-4 border rounded-lg ${
+      } flex cursor-grab items-center border-none justify-between text-white pl-[54px] BodyM w-60 p-4 border rounded-lg ${
         style[platformClass]
       }`}
       href={link}

@@ -24,6 +24,7 @@ const LinkSecondary: React.FC<LinkSecondaryProps> = ({
       href={href as Url}
       style={{ maxWidth: maxWidth ? maxWidth : "" }}
       className={linkClassName}
+      tabIndex={disabled ? -1 : 0}
       {...props}
     >
       {label}

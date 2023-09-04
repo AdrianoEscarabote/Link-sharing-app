@@ -84,7 +84,7 @@ const CustomLink = () => {
       </p>
       <ButtonSecondary
         className="mt-10"
-        disabled={false}
+        disabled={links.length === 5 ? true : false}
         type="button"
         label="+ Add new link"
         onClick={handleAddNewLink}
