@@ -43,8 +43,7 @@ const Form = () => {
     setShowLoadingComponent(true);
     try {
       const response = await fetch(
-        /* "https://spring-green-lion-vest.cyclic.cloud/auth/login", */
-        "http://localhost:7000/auth/login",
+        "https://spring-green-lion-vest.cyclic.cloud/auth/login",
         {
           method: "POST",
           credentials: "include",
