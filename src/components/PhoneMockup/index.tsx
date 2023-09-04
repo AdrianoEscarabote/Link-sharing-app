@@ -2,17 +2,29 @@
 
 import Image from "next/image";
 import style from "./style.module.css";
-import PreviewLink from "../../components/PreviewLink/index";
+import PreviewLinkDraggable from "../PreviewLinkDraggable";
 import { useSelector } from "react-redux";
 import { rootState } from "../../redux/root-reducer-types";
+import { useDispatch } from "react-redux";
+import { setData } from "@/redux/userLinks/reducer";
 
 const PhoneMockup = () => {
+  const dispatch = useDispatch();
   const { links } = useSelector(
     (rootReducer: rootState) => rootReducer.userLinksSlice
   );
 
-  const { profileImageUrl, lastName, id, previewEmail, firstName } =
-    useSelector((rootReducer: rootState) => rootReducer.profileDataSlice);
+  const moveLink = (fromIndex: number, toIndex: number) => {
+    const updatedLinks = [...links];
+    const [movedLink] = updatedLinks.splice(fromIndex, 1);
+    updatedLinks.splice(toIndex, 0, movedLink);
+
+    dispatch(setData(updatedLinks));
+  };
+
+  const { profileImageUrl, lastName, previewEmail, firstName } = useSelector(
+    (rootReducer: rootState) => rootReducer.profileDataSlice
+  );
 
   return (
     <section className="p-6 flex items-center justify-center w-full max-w-[560px] bg-white rounded-xl relative">
@@ -57,11 +69,14 @@ const PhoneMockup = () => {
           className={`${style.container} absolute top-[278px] w-[240px] max-h-[300px] rounded-lg overflow-y-scroll`}
         >
           <div
-            className={`${style.container} relative w-full flex flex-col gap-5`}
+            className={`${style.container} relative w-full flex flex-col rounded-lg gap-5`}
           >
             {links.length > 0
               ? links.map((item, index) => (
-                  <PreviewLink
+                  <PreviewLinkDraggable
+                    id={item.id}
+                    index={index}
+                    moveLink={moveLink}
                     key={index}
                     size="small"
                     label={item.platform}
