@@ -103,7 +103,7 @@ const Select = ({ id, platformSelected, onChange }: SelectProps) => {
       {optionsOpen ? (
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`${style.container} custom_scrollbar z-50 px-4 absolute top-12 flex flex-col items-start bg-white border border-1 border-light_gray w-full rounded-lg h-96 overflow-y-scroll `}
+          className={`${style.container} custom_scrollbar z-50 px-4 relative top-2 flex flex-col items-start bg-white border border-1 border-light_gray w-full rounded-lg h-96 overflow-y-scroll `}
           style={{ boxShadow: "0px 0px 32px 0px rgba(0, 0, 0, 0.10)" }}
         >
           {handleBlockOptionsAlreadySelected().map((platform, index) => (

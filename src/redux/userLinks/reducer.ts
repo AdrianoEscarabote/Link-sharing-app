@@ -42,6 +42,13 @@ const userLinksSlice = createSlice({
       }
     },
 
+    udpatedLinksId: (state) => {
+      state.links = state.links.map((link, index) => ({
+        ...link,
+        id: `${index + 1}`,
+      }));
+    },
+
     removeLink: (state, action: PayloadAction<removeLinkType>) => {
       const { idToRemove } = action.payload;
       const number = Number(idToRemove);
@@ -90,6 +97,7 @@ const userLinksSlice = createSlice({
 });
 
 export const {
+  udpatedLinksId,
   setNewLink,
   setData,
   removeLink,

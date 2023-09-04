@@ -8,8 +8,11 @@ import { FormEvent, useState } from "react";
 import Alert from "@/components/Alert";
 import style from "./style.module.css";
 import useLinksValid from "@/hooks/useInvalidLinks";
+import { udpatedLinksId } from "@/redux/userLinks/reducer";
+import { useDispatch } from "react-redux";
 
 const LinkForm = () => {
+  const dispatch = useDispatch();
   const { invalidLinks } = useLinksValid();
   const [alertOpen, setAlertOpen] = useState<boolean>(false);
   const { links } = useSelector(
@@ -21,6 +24,7 @@ const LinkForm = () => {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    dispatch(udpatedLinksId());
     const setData = async () => {
       setAlertOpen(true);
       setShowLoadingComponent(true);
