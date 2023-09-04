@@ -7,10 +7,10 @@ import { rootState } from "@/redux/root-reducer-types";
 import { FormEvent, useState } from "react";
 import Alert from "@/components/Alert";
 import style from "./style.module.css";
-import useLinksValid from "@/hooks/useLinksValid";
+import useLinksValid from "@/hooks/useInvalidLinks";
 
 const LinkForm = () => {
-  const { isUnavailableUrl } = useLinksValid();
+  const { invalidLinks } = useLinksValid();
   const [alertOpen, setAlertOpen] = useState<boolean>(false);
   const { links } = useSelector(
     (rootReducer: rootState) => rootReducer.userLinksSlice
@@ -57,9 +57,11 @@ const LinkForm = () => {
           <div className="flex items-end justify-end w-full py-6 px-10 border-1 border-t border-light_gray">
             <ButtonPrimary
               maxWidth="91px"
-              disabled={isUnavailableUrl || links.length === 0}
+              disabled={invalidLinks !== undefined || links.length === 0}
               type={
-                isUnavailableUrl || links.length === 0 ? "button" : "submit"
+                invalidLinks !== undefined || links.length === 0
+                  ? "button"
+                  : "submit"
               }
               label="Save"
               showLoadingComponent={showLoadingComponent}

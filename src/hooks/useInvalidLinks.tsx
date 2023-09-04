@@ -2,17 +2,22 @@ import { rootState } from "@/redux/root-reducer-types";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+interface LinkInvalidTypes {
+  id: string;
+  platform: string;
+  link: string;
+}
+
 const useLinksValid = () => {
   const { links } = useSelector(
     (rootReducer: rootState) => rootReducer.userLinksSlice
   );
-  const [isUnavailableUrl, setIsUnavailableUrl] = useState<boolean>(true);
+  const [invalidLinks, setInvalidLinks] = useState<LinkInvalidTypes>();
 
   useEffect(() => {
     const handleVerifyLinksUrl = () => {
-      const linksUrl = links.map((item) => item.link);
-      const hasInvalidUrl = linksUrl.some((url) => !isValidUrl(url));
-      setIsUnavailableUrl(hasInvalidUrl);
+      const linkErrorFind = links.find((link) => !isValidUrl(link.link));
+      setInvalidLinks(linkErrorFind);
     };
 
     const isValidUrl = (url: string) => {
@@ -27,7 +32,7 @@ const useLinksValid = () => {
   }, [links]);
 
   return {
-    isUnavailableUrl,
+    invalidLinks,
   };
 };
 

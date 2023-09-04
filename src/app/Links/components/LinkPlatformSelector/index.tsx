@@ -9,7 +9,7 @@ import { LinkPlatformSelectorTypes } from "./LinkPlatformSelectorProps";
 import { PlatformsName } from "@/redux/root-reducer-types";
 import { useDispatch } from "react-redux";
 import { changeSelectValue, changeValue } from "@/redux/userLinks/reducer";
-import useLinksValid from "@/hooks/useLinksValid";
+import useLinksValid from "@/hooks/useInvalidLinks";
 import { useDrag, useDrop } from "react-dnd";
 
 const LinkPlatformSelector = ({
@@ -20,7 +20,7 @@ const LinkPlatformSelector = ({
   index,
   moveLink,
 }: LinkPlatformSelectorTypes) => {
-  const { isUnavailableUrl } = useLinksValid();
+  const { invalidLinks } = useLinksValid();
   const dispatch = useDispatch();
   const [platformValue, setPlatformValue] = useState<PlatformsName>(platform);
   const [linkValue, setLinkValue] = useState<string>(link);
@@ -119,7 +119,7 @@ const LinkPlatformSelector = ({
           value={linkValue}
           onChange={(ev) => setLinkValue(ev.currentTarget.value)}
           placeholder="e.g. https://www.github.com/johnappleseed"
-          error={isUnavailableUrl}
+          error={invalidLinks?.id === id ? true : false}
           errorMessage="invalid link!"
         />
       </label>

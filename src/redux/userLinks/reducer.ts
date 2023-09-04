@@ -44,10 +44,8 @@ const userLinksSlice = createSlice({
 
     removeLink: (state, action: PayloadAction<removeLinkType>) => {
       const { idToRemove } = action.payload;
-
-      if (idToRemove) {
-        state.links = state.links.filter((link) => link.id !== idToRemove);
-      }
+      const number = Number(idToRemove);
+      state.links.splice(number - 1, 1);
     },
 
     changeValue: (state, action: PayloadAction<changeValueType>) => {
