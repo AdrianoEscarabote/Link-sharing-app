@@ -17,7 +17,6 @@ import {
 } from "firebase/storage"
 import storage from "@/lib/firebase"
 import { ObjectId } from "mongodb"
-import { v4 as uuidv4 } from "uuid"
 
 export class MongoProfileUserRepository implements IProfileUserRepository {
   async setProfileUserDetails(
@@ -29,42 +28,26 @@ export class MongoProfileUserRepository implements IProfileUserRepository {
       .collection<MongoUser>("users")
       .findOne(filter)
 
-    if (!user?.uuid) {
-      const update = {
-        $set: {
-          firstName: params.firstName,
-          lastName: params.lastName,
-          previewEmail: params.previewEmail,
-          uuid: uuidv4(),
-        },
-      }
-      const updateUser = await MongoClient.db
-        .collection<MongoUser>("users")
-        .findOneAndUpdate(filter, update, {
-          returnDocument: "after",
-        })
+    if (!user) {
+      throw new Error()
+    }
 
-      if (!updateUser.value) {
-        throw new Error("User does not exist")
-      }
-    } else {
-      const updateUserDetails = {
-        $set: {
-          firstName: params.firstName,
-          lastName: params.lastName,
-          previewEmail: params.previewEmail,
-        },
-      }
+    const updateUserDetails = {
+      $set: {
+        firstName: params.firstName,
+        lastName: params.lastName,
+        previewEmail: params.previewEmail,
+      },
+    }
 
-      const updateUser = await MongoClient.db
-        .collection<MongoUser>("users")
-        .findOneAndUpdate(filter, updateUserDetails, {
-          returnDocument: "after",
-        })
+    const updateUser = await MongoClient.db
+      .collection<MongoUser>("users")
+      .findOneAndUpdate(filter, updateUserDetails, {
+        returnDocument: "after",
+      })
 
-      if (!updateUser.value) {
-        throw new Error("User does not exist")
-      }
+    if (!updateUser.value) {
+      throw new Error("User does not exist")
     }
 
     const updatedUser = await MongoClient.db
@@ -73,13 +56,12 @@ export class MongoProfileUserRepository implements IProfileUserRepository {
 
     if (!updatedUser) throw new Error()
 
-    const { firstName, lastName, previewEmail, uuid } = updatedUser
+    const { firstName, lastName, previewEmail } = updatedUser
 
     return {
       firstName,
       lastName,
       previewEmail,
-      uuid,
     }
   }
   async getProfileUserData(
