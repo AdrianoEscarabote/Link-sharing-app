@@ -23,6 +23,7 @@ const corsOptions = {
 import authRouter from "./routes/authRouter"
 import profileRouter from "./routes/profileRouter"
 import userLinksRouter from "./routes/userLinksRouter"
+import PreviewRouter from "./routes/previewRouter"
 
 const main = async () => {
   config()
@@ -50,11 +51,12 @@ const main = async () => {
   app.use("/auth", authRouter)
   app.use("/profile", profileRouter)
   app.use("/links", userLinksRouter)
+  app.use(PreviewRouter)
 
-  const port = 8000
+  const port = 7000
 
   app.listen(port, () => {
-    console.log("listening on port http://localhost:8000")
+    console.log("listening on port http://localhost:7000")
   })
 }
 
