@@ -10,10 +10,6 @@ import { ObjectId } from "mongodb"
 
 export class ChecktokenRepository implements IChecktokenRepository {
   async checktoken(params: ChecktokenParams): Promise<ChecktokenReturnTypes> {
-    if (!params.id || !params.token) {
-      throw new Error()
-    }
-
     const user = await MongoClient.db.collection<MongoUser>("users").findOne({
       _id: new ObjectId(params.id),
     })

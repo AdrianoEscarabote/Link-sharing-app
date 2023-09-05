@@ -12,12 +12,19 @@ export class ChecktokenController implements IController {
   async handle(
     HttpRequest: HttpRequest<ChecktokenParams>,
   ): Promise<HttpResponse<ChecktokenReturnTypes | string>> {
-    if (!HttpRequest.body?.id || !HttpRequest.body?.token) {
+    try {
+      if (!HttpRequest.body?.id || !HttpRequest.body?.token) {
+        return badRequest("token and id not found!")
+      }
+
+      const { msg } = await this.ChecktokenRepository.checktoken(
+        HttpRequest.body,
+      )
+
+      return ok<ChecktokenReturnTypes>(msg)
+    } catch (error) {
+      console.log(error)
       return badRequest("token and id not found!")
     }
-
-    const { msg } = await this.ChecktokenRepository.checktoken(HttpRequest.body)
-
-    return ok<ChecktokenReturnTypes>(msg)
   }
 }

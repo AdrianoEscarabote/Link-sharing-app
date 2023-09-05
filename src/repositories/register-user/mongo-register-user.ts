@@ -1,14 +1,15 @@
 import {
   IRegisterUserRepository,
   RegisterUserParams,
+  ReturnRegisterUser,
 } from "@/controllers/register-user/protocols"
 import { MongoClient } from "@/database/mongo"
-import { UserTypes } from "@/models/User"
 import { MongoUser } from "../mongo-protocols"
 import { genSalt, hash } from "bcrypt"
+import { v4 as uuidv4 } from "uuid"
 
 export class MongoRegisterUserRepository implements IRegisterUserRepository {
-  async registerUser(params: RegisterUserParams): Promise<UserTypes> {
+  async registerUser(params: RegisterUserParams): Promise<ReturnRegisterUser> {
     const userExists = await MongoClient.db.collection("users").findOne({
       email: params.email,
     })
@@ -23,6 +24,7 @@ export class MongoRegisterUserRepository implements IRegisterUserRepository {
     const userData = {
       email: params.email,
       password: passwordHash,
+      uuid: uuidv4(),
     }
 
     const { insertedId } = await MongoClient.db
@@ -37,8 +39,8 @@ export class MongoRegisterUserRepository implements IRegisterUserRepository {
       throw new Error("User not created")
     }
 
-    const { _id, ...rest } = user
+    const { uuid, _id } = user
 
-    return { id: _id.toHexString(), ...rest }
+    return { uuid, id: _id.toHexString() }
   }
 }

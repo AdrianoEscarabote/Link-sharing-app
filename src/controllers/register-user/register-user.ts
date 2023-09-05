@@ -31,11 +31,6 @@ export class RegisterUserController implements IController {
         return badRequest("E-mail is invalid")
       }
 
-      console.log(
-        "senhas",
-        httpRequest?.body?.confirmpassword !== httpRequest?.body?.password,
-      )
-
       if (httpRequest?.body?.confirmpassword !== httpRequest?.body?.password) {
         throw new Error("Password and confirmation password must match")
       }
