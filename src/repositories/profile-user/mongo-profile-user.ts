@@ -108,14 +108,14 @@ export class MongoProfileUserRepository implements IProfileUserRepository {
     if (user.profileImageName && user.profileImageUrl) {
       const oldImageRef = ref(
         storage,
-        `images${params.id}/` + user.profileImageName,
+        `images${user.uuid}/` + user.profileImageName,
       )
       await deleteObject(oldImageRef)
     }
 
     const storageRef = ref(
       storage,
-      `images${params.id}/` + profileImage.originalname,
+      `images${user.uuid}/` + profileImage.originalname,
     )
 
     await uploadBytes(storageRef, profileImage.buffer).then(() => {
