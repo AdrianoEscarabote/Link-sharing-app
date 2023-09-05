@@ -38,6 +38,7 @@ interface setPreviewDataProps {
   previewEmail: string;
   links: LinkTypes[];
   profileImageUrl: string;
+  uuid: string;
 }
 
 interface setUserUuidTypes {
