@@ -76,7 +76,6 @@ const Form = () => {
         firstName,
         lastName,
         previewEmail,
-        uuid: responseData.uuid,
       })
     );
 

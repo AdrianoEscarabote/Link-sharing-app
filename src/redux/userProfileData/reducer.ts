@@ -6,7 +6,9 @@ import {
   setProfileImageUrlTypes,
   setUserIdProps,
   setPreviewDataProps,
+  setUserUuidTypes,
 } from "./profileDataTypes";
+import { act } from "react-dom/test-utils";
 
 const initialState: initialStateTypes = {
   email: "",
@@ -48,42 +50,34 @@ const profileDataSlice = createSlice({
       return initialState;
     },
 
-    setProfileDetails: (
-      state,
-      action: PayloadAction<setProfileDetailsProps>
-    ) => {
-      const { firstName, lastName, previewEmail, uuid } = action.payload;
-      if (firstName && lastName && previewEmail) {
-        state.firstName = firstName;
-        state.lastName = lastName;
-        state.previewEmail = previewEmail;
+    setUserUuid: (state, action: PayloadAction<setUserUuidTypes>) => {
+      const { uuid } = action.payload;
+      if (uuid) {
         state.uuid = uuid;
       }
     },
 
-    setPreviewData: (state, action: PayloadAction<setPreviewDataProps>) => {
-      const {
-        firstName,
-        lastName,
-        links,
-        previewEmail,
-        uuid,
-        profileImageUrl,
-      } = action.payload;
+    setProfileDetails: (
+      state,
+      action: PayloadAction<setProfileDetailsProps>
+    ) => {
+      const { firstName, lastName, previewEmail } = action.payload;
+      if (firstName && lastName && previewEmail) {
+        state.firstName = firstName;
+        state.lastName = lastName;
+        state.previewEmail = previewEmail;
+      }
+    },
 
-      if (
-        firstName &&
-        lastName &&
-        links &&
-        previewEmail &&
-        uuid &&
-        profileImageUrl
-      ) {
+    setPreviewData: (state, action: PayloadAction<setPreviewDataProps>) => {
+      const { firstName, lastName, links, previewEmail, profileImageUrl } =
+        action.payload;
+
+      if (firstName && lastName && links && previewEmail && profileImageUrl) {
         state.firstName = firstName;
         state.lastName = lastName;
         state.links = links;
         state.previewEmail = previewEmail;
-        state.uuid = uuid;
         state.profileImageUrl = profileImageUrl;
       }
     },
@@ -91,6 +85,7 @@ const profileDataSlice = createSlice({
 });
 
 export const {
+  setUserUuid,
   setProfileDetails,
   handleResetData,
   setEmail,

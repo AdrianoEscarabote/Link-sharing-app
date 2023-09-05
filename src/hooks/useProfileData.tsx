@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   setProfileDetails,
   setProfileImageUrl,
+  setUserUuid,
 } from "@/redux/userProfileData/reducer";
 import { setData } from "@/redux/userLinks/reducer";
 import { useRouter } from "next/navigation";
@@ -44,11 +45,16 @@ const useProfileData = () => {
         } = await response.json();
 
         dispatch(
+          setUserUuid({
+            uuid,
+          })
+        );
+
+        dispatch(
           setProfileDetails({
             firstName,
             lastName,
             previewEmail,
-            uuid,
           })
         );
 
