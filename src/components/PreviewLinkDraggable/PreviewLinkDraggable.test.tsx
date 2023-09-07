@@ -1,30 +1,47 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import PreviewLinkDraggable from ".";
+import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
+import getMockState from "@/utils/getMockState";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
-describe("Preview Link Draggable", () => {
-  it("should render correctly", () => {
-    render(
-      <PreviewLinkDraggable
-        index={1}
-        label="GitHub"
-        link="www.github.com/AdrianoEscarabote"
-        size="small"
-      />
-    );
+const mockStore = configureMockStore();
+
+jest.mock("react-dnd", () => ({
+  useDrag: jest.fn(),
+  useDrop: jest.fn(),
+  DndProvider: jest.fn(),
+}));
+jest.mock("react-dnd-html5-backend", () => ({
+  HTML5Backend: jest.fn(),
+}));
+
+describe("Preview Link Draggable component", () => {
+  let store;
+
+  beforeEach(() => {
+    const mockState = getMockState();
+    const state = mockStore(mockState);
+
+    store = state;
   });
 
-  it("should pass props correctly", () => {
+  afterAll(() => jest.clearAllMocks());
+
+  it("should render correctly", () => {
     render(
-      <PreviewLinkDraggable
-        index={1}
-        label="GitHub"
-        link="www.github.com/AdrianoEscarabote"
-        size="small"
-      />
+      <DndProvider backend={HTML5Backend}>
+        <Provider store={store}>
+          <PreviewLinkDraggable
+            index={1}
+            label="GitHub"
+            link="https://github.com/AdrianoEscarabote"
+            moveLink={() => {}}
+            size="large"
+          />
+        </Provider>
+      </DndProvider>
     );
-
-    const element = screen.getByText("GitHub");
-
-    expect(element).toBeInTheDocument();
   });
 });

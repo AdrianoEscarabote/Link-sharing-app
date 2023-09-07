@@ -7,6 +7,7 @@ describe("Button Primary", () => {
 
     render(
       <ButtonPrimary
+        showLoadingComponent={false}
         disabled={false}
         label="Click"
         type="button"
