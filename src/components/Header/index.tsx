@@ -7,12 +7,13 @@ import LinkSecondary from "../LinkSecondary";
 import style from "./style.module.css";
 import { useSelector } from "react-redux";
 import { rootState } from "@/redux/root-reducer-types";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const Header = () => {
   const { id, uuid } = useSelector(
     (rootReducer: rootState) => rootReducer.profileDataSlice
   );
-  const [showText, setShowText] = useState<boolean>(true);
+  const showText: boolean = useMediaQuery("(max-width: 1100px)");
   const [urlLinkPathImage, setUrlLinkPathImage] = useState(
     "/assets/icon-links-header.svg"
   );
@@ -30,21 +31,6 @@ const Header = () => {
       setUrlProfilePathImage("/assets/icon-profile-details-header.svg");
     }
   }, [windowLocation]);
-
-  useEffect(() => {
-    const checkWidthScreen = () => {
-      const widthScreen =
-        window.innerWidth || document.documentElement.clientWidth;
-      setShowText(widthScreen > 1100);
-    };
-
-    checkWidthScreen();
-
-    window.addEventListener("resize", checkWidthScreen);
-    return () => {
-      window.removeEventListener("resize", checkWidthScreen);
-    };
-  }, []);
 
   return (
     <header className={`${style.header} bg-white rounded-xl`}>
@@ -70,13 +56,13 @@ const Header = () => {
             active={urlLinkPathImage.includes("purple") ? true : false}
             href={`/Links/${id}`}
             imagePath={urlLinkPathImage}
-            label={showText ? "Links" : ""}
+            label={!showText ? "Links" : ""}
           />
           <Tab
             active={urlProfilePathImage.includes("purple") ? true : false}
             href={`/ProfileDetails/${id}`}
             imagePath={urlProfilePathImage}
-            label={showText ? "Profile Details" : ""}
+            label={!showText ? "Profile Details" : ""}
             className="flex items-center justify-center"
           />
         </div>
@@ -86,7 +72,7 @@ const Header = () => {
           href={`/Preview/${uuid}`}
           disabled={uuid ? false : true}
           className={`${style.link}`}
-          label={showText ? "Preview" : ""}
+          label={!showText ? "Preview" : ""}
         />
       </nav>
     </header>
