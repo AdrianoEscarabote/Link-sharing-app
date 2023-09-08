@@ -2,9 +2,27 @@ import { render, screen } from "@testing-library/react";
 import PhoneMockup from ".";
 import { Provider } from "react-redux";
 import configureMockstore from "redux-mock-store";
-import getMockState from "../../testsUtils/getMockState";
+import getMockState from "@/utils/getMockState";
 
 const mockStore = configureMockstore();
+
+const id = 1;
+const index = 1;
+jest.mock("react-dnd", () => ({
+  useDrag: () => [
+    {
+      type: "LINK",
+      item: { id, index },
+    },
+    jest.fn(),
+  ],
+  useDrop: () => [{}, jest.fn()],
+  DndProvider: jest.fn(),
+}));
+
+jest.mock("react-dnd-html5-backend", () => ({
+  HTML5Backend: jest.fn(),
+}));
 
 describe("Phone Mockup Component", () => {
   let store: any;
