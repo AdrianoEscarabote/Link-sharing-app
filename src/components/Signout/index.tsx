@@ -5,10 +5,10 @@ import ButtonPrimary from "../ButtonPrimary";
 import { useDispatch } from "react-redux";
 import { handleResetData } from "@/redux/userProfileData/reducer";
 import { handleResetLinks } from "@/redux/userLinks/reducer";
-import { SignoutComponent } from "./SignoutProps";
+import { SignoutComponentProps } from "./SignoutProps";
 import style from "./style.module.css";
 
-const SignoutComponent = ({ cancelSignout }: SignoutComponent) => {
+const SignoutComponent = ({ cancelSignout }: SignoutComponentProps) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [showLoadingComponent, setShowLoadingComponent] =

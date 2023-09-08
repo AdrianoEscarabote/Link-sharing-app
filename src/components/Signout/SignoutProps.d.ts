@@ -1,5 +1,5 @@
-interface SignoutComponent {
+interface SignoutComponentProps {
   cancelSignout: Dispatch<SetStateAction<boolean>>;
 }
 
-export { SignoutComponent };
+export { SignoutComponentProps };
