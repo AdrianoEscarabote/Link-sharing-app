@@ -29,6 +29,9 @@
     "uuid": "^9.0.0",
     "validator": "^13.11.0"
   },
+  "resolutions": {
+    "micromatch": "4.0.8"
+  },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/cookie-parser": "^1.4.3",
