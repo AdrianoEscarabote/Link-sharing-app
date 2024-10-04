@@ -57,7 +57,7 @@ const Form = () => {
     };
 
     const response = await fetch(
-      `https://spring-green-lion-vest.cyclic.cloud/profile/setProfileDetails`,
+      `https://link-sharing-backend.onrender.com/profile/setProfileDetails`,
       {
         method: "PUT",
         credentials: "include",

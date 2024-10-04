@@ -22,7 +22,7 @@ const CreateAccountForm = () => {
   useEffect(() => {
     const checkToken = async () => {
       const response = await fetch(
-        "https://spring-green-lion-vest.cyclic.cloud/auth/checkToken",
+        "https://link-sharing-backend.onrender.com/auth/checkToken",
         {
           method: "GET",
           credentials: "include",
@@ -40,7 +40,7 @@ const CreateAccountForm = () => {
     setShowLoadingComponent(true);
     try {
       const response = await fetch(
-        "https://spring-green-lion-vest.cyclic.cloud/auth/register",
+        "https://link-sharing-backend.onrender.com/auth/register",
         {
           method: "POST",
           credentials: "include",

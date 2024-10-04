@@ -18,7 +18,7 @@ const SignoutComponent = ({ cancelSignout }: SignoutComponentProps) => {
   useEffect(() => {
     const handleLogout = async () => {
       const response = await fetch(
-        "https://spring-green-lion-vest.cyclic.cloud/auth/logout",
+        "https://link-sharing-backend.onrender.com/auth/logout",
         {
           method: "POST",
           credentials: "include",

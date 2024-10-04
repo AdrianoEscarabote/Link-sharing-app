@@ -17,14 +17,14 @@ const usePreviewAuthAndData = () => {
         const uuidUrl = baseurl.split("/Preview/")[1];
         const [authResponse, profileResponse] = await Promise.all([
           await fetch(
-            `https://spring-green-lion-vest.cyclic.cloud/auth/checkToken`,
+            `https://link-sharing-backend.onrender.com/auth/checkToken`,
             {
               method: "GET",
               credentials: "include",
             }
           ),
           await fetch(
-            `https://spring-green-lion-vest.cyclic.cloud/Preview/${uuidUrl}`,
+            `https://link-sharing-backend.onrender.com/Preview/${uuidUrl}`,
             {
               method: "GET",
             }

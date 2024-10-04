@@ -8,7 +8,7 @@ const useUserAuthenticated = () => {
   useEffect(() => {
     const callApi = async () => {
       const response = await fetch(
-        `https://spring-green-lion-vest.cyclic.cloud/auth/checkToken`,
+        `https://link-sharing-backend.onrender.com/auth/checkToken`,
         {
           method: "GET",
           credentials: "include",

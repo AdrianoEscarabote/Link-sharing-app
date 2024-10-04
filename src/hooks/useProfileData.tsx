@@ -19,7 +19,7 @@ const useProfileData = () => {
     () => async () => {
       try {
         const response = await fetch(
-          "https://spring-green-lion-vest.cyclic.cloud/profile/getProfileData",
+          "https://link-sharing-backend.onrender.com/profile/getProfileData",
           {
             method: "GET",
             credentials: "include",

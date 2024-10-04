@@ -28,17 +28,14 @@ const LinkForm = () => {
     const setData = async () => {
       setAlertOpen(true);
       setShowLoadingComponent(true);
-      await fetch(
-        `https://spring-green-lion-vest.cyclic.cloud/links/setLinks`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ links }),
-        }
-      );
+      await fetch(`https://link-sharing-backend.onrender.com/links/setLinks`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ links }),
+      });
       setShowLoadingComponent(false);
     };
     setData();

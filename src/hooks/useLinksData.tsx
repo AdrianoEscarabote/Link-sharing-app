@@ -14,7 +14,7 @@ const useLinksData = () => {
     () => async () => {
       try {
         const response = await fetch(
-          `https://spring-green-lion-vest.cyclic.cloud/links/getLinks`,
+          `https://link-sharing-backend.onrender.com/links/getLinks`,
           {
             method: "GET",
             credentials: "include",

@@ -63,7 +63,7 @@ const ImageUpload = () => {
         formData.append("profileImage", selectedImage);
 
         const response = await fetch(
-          `https://spring-green-lion-vest.cyclic.cloud/profile/setProfileImage`,
+          `https://link-sharing-backend.onrender.com/profile/setProfileImage`,
           {
             method: "PUT",
             credentials: "include",
