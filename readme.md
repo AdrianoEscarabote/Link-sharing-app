@@ -1,8 +1,8 @@
 # Link-sharing app
 
-This is a solution to the [Link-sharing app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT). Frontend Mentor challenges help you improve your coding skills by building realistic projects. This is the front-end repository if you want to see the backend you can access this link: [Backend Repository](https://github.com/AdrianoEscarabote/link-sharing-backend)
+This is a solution to the [Link-sharing app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Contents
+## 📋 Contents
 
 - [The challenge](#the-challenge)
 - [Continued development](#continued-development)
@@ -11,7 +11,7 @@ This is a solution to the [Link-sharing app challenge on Frontend Mentor](https:
 - [Author](#author)
 - [License](#📝-license)
 
-## The challenge
+## ✅ The challenge
 
 **My app allows users to:**
 
@@ -26,13 +26,17 @@ This is a solution to the [Link-sharing app challenge on Frontend Mentor](https:
 - **Bonus**: Store their details securely in a database
 - **Bonus**: Create a personalized account and log in
 
-## Continued development
+## 🧠 Architecture
 
-This was my first fullstack project, and I'm incredibly proud to have successfully completed it. Throughout the entire process, from planning to development and hosting, I encountered various challenges. I believe this project represents my best work to date, and it's also the largest one I've ever undertaken. I'm extremely pleased with the results achieved.
+<div align="center"> <img src="https://i.imgur.com/1COB1Lz.png" alt="System architecture showing the interaction between frontend, backend and database." /> </div>
 
-Looking ahead, I'm eager to embark on even more ambitious fullstack projects while continuing to enhance my backend development skills. My goal is to always seek new knowledge and consistently improve the skills I already possess.
+## 🧩 Used Concepts
 
-## Setup
+- SOLID
+- Dependency Injection
+- Repository Pattern
+
+## 🛠️ Setup - Frontend
 
 Follow these steps to set up the project:
 
@@ -45,7 +49,7 @@ git clone https://github.com/AdrianoEscarabote/Link-sharing-app
 Navigate to the project's root directory:
 
 ```sh
-cd Link-sharing-app/
+cd Link-sharing-app/frontend/
 ```
 
 Install project dependencies by running:
@@ -54,7 +58,7 @@ Install project dependencies by running:
 npm install
 ```
 
-### Development
+### 🚀 Development
 
 To start the development server and preview your application, use the following command:
 
@@ -62,15 +66,7 @@ To start the development server and preview your application, use the following 
 npm run dev
 ```
 
-### Testing
-
-Run tests by executing the following command:
-
-```sh
-npm run test
-```
-
-### Storybook
+### 📖 Storybook
 
 Explore and visualize components using Storybook with this command:
 
@@ -78,7 +74,15 @@ Explore and visualize components using Storybook with this command:
 npm run storybook
 ```
 
-## Technologies Used
+### 🧪 Testing
+
+Run tests by executing the following command:
+
+```sh
+npm run test
+```
+
+## 🧰 Technologies Used
 
 **Operational System**
 
@@ -104,14 +108,16 @@ npm run storybook
 
 **Tools**
 
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-F29D0C?style=for-the-badge&logo=firebase&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+![Yarn](https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)
 
-## Author
+## 👤 Author
 
-👤 **AdrianoEscarabote**
+**AdrianoEscarabote**
 
 - Github: [@AdrianoEscarabote](https://github.com/AdrianoEscarabote)
 - Linkedin: [@AdrianoEscarabote](https://www.linkedin.com/in/AdrianoEscarabote/)
@@ -120,7 +126,7 @@ npm run storybook
 
 ## 📝 License
 
-Copyright © 2023 [AdrianoEscarabote](https://github.com/AdrianoEscarabote).<br />
+Copyright © 2025 [AdrianoEscarabote](https://github.com/AdrianoEscarabote).<br />
 This project is [MIT](https://github.com/AdrianoEscarabote/Link-sharing-app/blob/main/LICENSE) licensed.
 
 ---
