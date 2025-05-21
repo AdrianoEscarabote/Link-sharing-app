@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: link-sharing-app-backend
+    ports:
+      - "7000:7000"
+    env_file:
+      - ./backend/.env
+    networks:
+      - mynetwork
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: link-sharing-app-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

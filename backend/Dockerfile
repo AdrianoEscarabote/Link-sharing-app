@@ -1,4 +1,3 @@
-# Etapa 1: build
 FROM node:18 AS builder
 
 WORKDIR /app
@@ -10,7 +9,6 @@ COPY . .
 
 RUN yarn build
 
-# Etapa 2: runtime
 FROM node:18-alpine
 
 WORKDIR /app
