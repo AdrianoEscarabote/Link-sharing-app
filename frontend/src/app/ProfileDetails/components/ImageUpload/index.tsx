@@ -63,7 +63,7 @@ const ImageUpload = () => {
         formData.append("profileImage", selectedImage);
 
         const response = await fetch(
-          `https://link-sharing-backend.onrender.com/profile/setProfileImage`,
+          `${process.env.NEXT_PUBLIC_API_URL}/profile/setProfileImage`,
           {
             method: "PUT",
             credentials: "include",

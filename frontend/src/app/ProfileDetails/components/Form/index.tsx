@@ -57,7 +57,7 @@ const Form = () => {
     };
 
     const response = await fetch(
-      `https://link-sharing-backend.onrender.com/profile/setProfileDetails`,
+      `${process.env.NEXT_PUBLIC_API_URL}/profile/setProfileDetails`,
       {
         method: "PUT",
         credentials: "include",

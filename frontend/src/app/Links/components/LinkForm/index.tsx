@@ -28,7 +28,7 @@ const LinkForm = () => {
     const setData = async () => {
       setAlertOpen(true);
       setShowLoadingComponent(true);
-      await fetch(`https://link-sharing-backend.onrender.com/links/setLinks`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/links/setLinks`, {
         method: "POST",
         credentials: "include",
         headers: {

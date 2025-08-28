@@ -22,7 +22,7 @@ const CreateAccountForm = () => {
   useEffect(() => {
     const checkToken = async () => {
       const response = await fetch(
-        "https://link-sharing-backend.onrender.com/auth/checkToken",
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/checkToken`,
         {
           method: "GET",
           credentials: "include",
