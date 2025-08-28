@@ -14,7 +14,7 @@ const useLinksData = () => {
     () => async () => {
       try {
         const response = await fetch(
-          `https://link-sharing-backend.onrender.com/links/getLinks`,
+          `${process.env.NEXT_PUBLIC_API_URL}/links/getLinks`,
           {
             method: "GET",
             credentials: "include",

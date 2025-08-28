@@ -16,19 +16,13 @@ const usePreviewAuthAndData = () => {
       try {
         const uuidUrl = baseurl.split("/Preview/")[1];
         const [authResponse, profileResponse] = await Promise.all([
-          await fetch(
-            `https://link-sharing-backend.onrender.com/auth/checkToken`,
-            {
-              method: "GET",
-              credentials: "include",
-            }
-          ),
-          await fetch(
-            `https://link-sharing-backend.onrender.com/Preview/${uuidUrl}`,
-            {
-              method: "GET",
-            }
-          ),
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/checkToken`, {
+            method: "GET",
+            credentials: "include",
+          }),
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/Preview/${uuidUrl}`, {
+            method: "GET",
+          }),
         ]);
         if (authResponse.status === 200) {
           setLoggedUser(true);

@@ -19,7 +19,7 @@ const useProfileData = () => {
     () => async () => {
       try {
         const response = await fetch(
-          "https://link-sharing-backend.onrender.com/profile/getProfileData",
+          `${process.env.NEXT_PUBLIC_API_URL}/profile/getProfileData`,
           {
             method: "GET",
             credentials: "include",
