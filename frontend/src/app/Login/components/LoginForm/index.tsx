@@ -1,12 +1,13 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { IloginTypes } from "./LoginTypes";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
 import ButtonPrimary from "../../../../components/ButtonPrimary/index";
-import style from "./style.module.css";
 import Input from "../../../../components/Input/index";
-import { useState, useEffect } from "react";
+import { IloginTypes } from "./LoginTypes";
+import style from "./style.module.css";
 
 const Form = () => {
   const router = useRouter();
@@ -30,7 +31,7 @@ const Form = () => {
       }
     };
     checkToken();
-  }, []);
+  }, [router]);
 
   const {
     register,
@@ -43,7 +44,7 @@ const Form = () => {
     setShowLoadingComponent(true);
     try {
       const response = await fetch(
-        "https://link-sharing-backend.onrender.com/auth/login",
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
         {
           method: "POST",
           credentials: "include",
@@ -81,7 +82,7 @@ const Form = () => {
           htmlFor="email"
           className={`${
             errors.email ? "text-red" : ""
-          } BodyS relative flex flex-col gap-1 text-almost_dark`}
+          } BodyS relative flex flex-col gap-1 text-almost_dark dark:text-grey-300`}
         >
           Email address
           <Input
@@ -109,7 +110,7 @@ const Form = () => {
         <label
           htmlFor="password"
           className={`${
-            errors.password ? "text-red" : "text-almost_dark"
+            errors.password ? "text-red" : "text-almost_dark dark:text-grey-300"
           } BodyS relative flex gap-1 flex-col `}
         >
           Create password

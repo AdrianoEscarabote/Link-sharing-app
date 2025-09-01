@@ -1,33 +1,40 @@
-import Form from "./components/CreateAccountForm/index";
-import style from "./style.module.css";
-import Link from "next/link";
-import Image from "next/image";
+"use client";
 
-export const metadata = {
-  title: "Create Account",
-};
+import Image from "next/image";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+
+import Form from "./components/CreateAccountForm/index";
 
 const CreateAccountPage = () => {
+  const { theme } = useTheme();
+
   return (
-    <main
-      className={`${style.main} min-h-screen flex items-center justify-center flex-col gap-12 bg-almost_white`}
-    >
+    <main className="min-h-screen flex items-center justify-center flex-col gap-12 bg-almost_white dark:bg-dark-bg-1">
       <Image
-        src="/assets/logo-devlinks-large.svg"
+        src={`${
+          theme === "dark"
+            ? "/assets/logo-devlinks-white.svg"
+            : "/assets/logo-devlinks-large.svg"
+        }`}
         width="182"
         height="40"
         alt=""
       />
-      <section className={`${style.container} w-full bg-white p-10`}>
-        <div className="mb-10">
-          <h1 className="HeadingM text-almost_dark">Create account</h1>
-          <p className="BodyM text-gray">
+      <section className="max-w-[476px] w-full bg-white dark:bg-dark-bg-2 p-5 md:p-8 rounded-md border border-border">
+        <div className="mb-6">
+          <h1 className="HeadingM text-almost_dark dark:text-white">
+            Create account
+          </h1>
+          <p className="BodyM text-gray dark:text-grey-300">
             Let’s get you started sharing your links!
           </p>
         </div>
         <Form />
-        <div className="flex justify-center gap-2">
-          <p className="BodyM text-gray">Already have an account?</p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-6">
+          <p className="BodyM text-gray dark:text-grey-300">
+            Already have an account?
+          </p>
           <Link
             className="hover:underline BodyM text-dark_purple"
             href="/Login"

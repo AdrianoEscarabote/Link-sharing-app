@@ -1,12 +1,13 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { ICreateAccountTypes } from "./CreateAccountTypes";
-import ButtonPrimary from "../../../../components/ButtonPrimary/index";
-import style from "./style.module.css";
-import Input from "../../../../components/Input/index";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import ButtonPrimary from "../../../../components/ButtonPrimary/index";
+import Input from "../../../../components/Input/index";
+import { ICreateAccountTypes } from "./CreateAccountTypes";
+import style from "./style.module.css";
 
 const CreateAccountForm = () => {
   const router = useRouter();
@@ -34,13 +35,13 @@ const CreateAccountForm = () => {
       }
     };
     checkToken();
-  }, []);
+  }, [router]);
 
   const onSubmit = handleSubmit(async (data) => {
     setShowLoadingComponent(true);
     try {
       const response = await fetch(
-        "https://link-sharing-backend.onrender.com/auth/register",
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
         {
           method: "POST",
           credentials: "include",
@@ -67,7 +68,7 @@ const CreateAccountForm = () => {
         <label
           htmlFor="email"
           className={`flex relative gap-1 flex-col BodyS ${
-            errors.email ? "text-red" : "text-almost_dark"
+            errors.email ? "text-red" : "text-almost_dark dark:text-grey-300"
           }`}
         >
           Email address
@@ -98,7 +99,7 @@ const CreateAccountForm = () => {
         <label
           htmlFor="password"
           className={`flex relative gap-1 flex-col BodyS ${
-            errors.password ? "text-red" : "text-almost_dark"
+            errors.password ? "text-red" : "text-almost_dark dark:text-grey-300"
           }`}
         >
           Create password
@@ -130,7 +131,11 @@ const CreateAccountForm = () => {
         <label
           htmlFor="confirm_password"
           className={`flex relative gap-1 flex-col BodyS
-          ${errors.confirmpassword ? "text-red" : "text-almost_dark"}`}
+          ${
+            errors.confirmpassword
+              ? "text-red"
+              : "text-almost_dark  dark:text-grey-300"
+          }`}
         >
           Confirm password
           <Input
