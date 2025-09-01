@@ -1,9 +1,19 @@
 "use client";
 
-import Head from "next/head";
 import "./styles/global.css";
+
+import { Instrument_Sans } from "next/font/google";
+import Head from "next/head";
 import { Provider } from "react-redux";
+
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 import store from "@/redux/store";
+
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export default function RootLayout({
   children,
@@ -18,19 +28,19 @@ export default function RootLayout({
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
-      <body>
-        <Provider store={store}>{children}</Provider>
+      <body className={instrumentSans.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Provider store={store}>
+            {children}
+            <Toaster />
+          </Provider>
+        </ThemeProvider>
       </body>
     </html>
   );
