@@ -1,18 +1,20 @@
 "use client";
 
-import Input from "@/components/Input";
-import { useForm } from "react-hook-form";
-import { FormProps } from "./FormProps";
-import ButtonPrimary from "@/components/ButtonPrimary";
 import { useEffect, useState } from "react";
-import Alert from "@/components/Alert";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
+import Alert from "@/components/Alert";
+import ButtonPrimary from "@/components/ButtonPrimary";
+import Input from "@/components/Input";
+import { rootState } from "@/redux/root-reducer-types";
 import {
   setProfileDetails,
   setProfileImageUrl,
 } from "@/redux/userProfileData/reducer";
-import { useSelector } from "react-redux";
-import { rootState } from "@/redux/root-reducer-types";
+
+import { FormProps } from "./FormProps";
 import style from "./style.module.css";
 
 const Form = () => {
@@ -108,7 +110,10 @@ const Form = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit} className="bg-almost_white p-5 rounded-xl">
+      <form
+        onSubmit={onSubmit}
+        className="bg-almost_white p-5 rounded-xl dark:bg-dark-bg-1 dark:border dark:border-border"
+      >
         <fieldset className="flex flex-col gap-3">
           <legend className="sr-only">enter your information</legend>
 
@@ -117,7 +122,7 @@ const Form = () => {
           >
             <label
               htmlFor="first_name"
-              className={`${style.label} BodyM text-gray`}
+              className={`${style.label} BodyM text-gray dark:text-grey-300`}
             >
               First name*
             </label>
@@ -154,7 +159,7 @@ const Form = () => {
           >
             <label
               htmlFor="last_name"
-              className={`${style.label} BodyM text-gray`}
+              className={`${style.label} BodyM text-gray dark:text-grey-300`}
             >
               Last name*
             </label>
@@ -189,7 +194,10 @@ const Form = () => {
           <div
             className={`${style.container_input} flex items-center relative item justify-between w-full`}
           >
-            <label htmlFor="email" className={`${style.label} BodyM text-gray`}>
+            <label
+              htmlFor="email"
+              className={`${style.label} BodyM text-gray dark:text-grey-300`}
+            >
               Email
             </label>
             <Input

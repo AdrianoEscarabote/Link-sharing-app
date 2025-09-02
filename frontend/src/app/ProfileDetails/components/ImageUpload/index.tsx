@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import style from "./style.module.css";
 import NextImage from "next/image";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+
+import Alert from "@/components/Alert";
+import LoadingComponent from "@/components/LoadingComponent";
 import { rootState } from "@/redux/root-reducer-types";
 import { setProfileImageUrl } from "@/redux/userProfileData/reducer";
-import LoadingComponent from "@/components/LoadingComponent";
-import Alert from "@/components/Alert";
+
+import style from "./style.module.css";
 
 const ImageUpload = () => {
   const dispatch = useDispatch();
@@ -126,7 +128,7 @@ const ImageUpload = () => {
 
   return (
     <>
-      <div className="relative w-[193px] bg-light_purple h-[193px] rounded-xl">
+      <div className="relative w-[193px] bg-light_purple dark:bg-dark-bg-2 dark:border dark:border-border h-[193px] rounded-xl">
         {selectedImage === undefined && profileImageUrl === "" ? (
           <div className="absolute w-[193px] h-[193px] flex items-center justify-center flex-col gap-2 z-30">
             <NextImage
