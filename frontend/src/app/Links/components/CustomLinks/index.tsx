@@ -1,17 +1,19 @@
 "use client";
 
-import ButtonSecondary from "../../../../components/ButtonSecondary/index";
-import LinkPlatformSelector from "../LinkPlatformSelector";
-import GetYouStarted from "../GetYouStarted";
 import { useSelector } from "react-redux";
-import { PlatformsName, rootState } from "@/redux/root-reducer-types";
 import { useDispatch } from "react-redux";
+
+import { PlatformsName, rootState } from "@/redux/root-reducer-types";
 import {
   changeValue,
   removeLink,
   setData,
   setNewLink,
 } from "@/redux/userLinks/reducer";
+
+import ButtonSecondary from "../../../../components/ButtonSecondary/index";
+import GetYouStarted from "../GetYouStarted";
+import LinkPlatformSelector from "../LinkPlatformSelector";
 import style from "./style.module.css";
 
 const CustomLink = () => {
@@ -75,10 +77,12 @@ const CustomLink = () => {
 
   return (
     <section>
-      <h1 className={`${style.title} HeadingM text-almost_dark`}>
+      <h1
+        className={`${style.title} HeadingM text-almost_dark dark:text-grey-100`}
+      >
         Customize your links
       </h1>
-      <p className="BodyM text-gray">
+      <p className="BodyM text-gray dark:text-grey-300">
         Add/edit/remove links below and then share all your profiles with the
         world!
       </p>

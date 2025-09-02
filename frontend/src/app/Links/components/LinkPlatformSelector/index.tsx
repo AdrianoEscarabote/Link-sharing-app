@@ -1,16 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import style from "./style.module.css";
-import Input from "@/components/Input";
 import { MouseEventHandler, useEffect, useRef, useState } from "react";
+import { useDrag, useDrop } from "react-dnd";
+import { useDispatch } from "react-redux";
+
+import Input from "@/components/Input";
+import useLinksValid from "@/hooks/useInvalidLinks";
+import { PlatformsName } from "@/redux/root-reducer-types";
+import { changeSelectValue, changeValue } from "@/redux/userLinks/reducer";
+
 import Select from "../Select";
 import { LinkPlatformSelectorTypes } from "./LinkPlatformSelectorProps";
-import { PlatformsName } from "@/redux/root-reducer-types";
-import { useDispatch } from "react-redux";
-import { changeSelectValue, changeValue } from "@/redux/userLinks/reducer";
-import useLinksValid from "@/hooks/useInvalidLinks";
-import { useDrag, useDrop } from "react-dnd";
+import style from "./style.module.css";
 
 const LinkPlatformSelector = ({
   removeLink,
@@ -73,7 +75,7 @@ const LinkPlatformSelector = ({
     <div
       draggable
       ref={linkRef}
-      className="cursor-grab bg-almost_white rounded-xl p-5 flex flex-col gap-3 z-10"
+      className="cursor-grab bg-almost_white dark:border dark:border-border dark:bg-dark-bg-1 rounded-xl p-5 flex flex-col gap-3 z-10"
       id={`${id}`}
     >
       <div className="flex items-center justify-between w-full">
@@ -91,7 +93,11 @@ const LinkPlatformSelector = ({
             <p className="BodyM font-bold">Link #{id}</p>
           </div>
 
-          <button className="BodyM" type="button" onClick={handleClickRemove}>
+          <button
+            className="BodyM dark:text-red opacity-80 hover:underline"
+            type="button"
+            onClick={handleClickRemove}
+          >
             Remove
           </button>
         </div>
@@ -99,7 +105,7 @@ const LinkPlatformSelector = ({
 
       <label
         htmlFor="selectInput"
-        className={`${style.linkOptions} BodyS text-almost_dark`}
+        className={`${style.linkOptions} flex flex-col gap-1 BodyS text-almost_dark dark:text-grey-300`}
       >
         Platform
         <Select
@@ -111,7 +117,7 @@ const LinkPlatformSelector = ({
 
       <label
         htmlFor="link"
-        className="w-full flex flex-col gap-1 BodyS text-almost_dark"
+        className="w-full flex flex-col gap-1 BodyS text-almost_dark dark:text-grey-300"
       >
         Link
         <Input

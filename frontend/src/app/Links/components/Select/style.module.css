@@ -9,7 +9,7 @@
 }
 
 .selected {
-  color: #633cff;
+  color: #633cff !important;
   font-weight: 700;
 }
 

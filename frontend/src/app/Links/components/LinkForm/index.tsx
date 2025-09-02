@@ -1,15 +1,17 @@
 "use client";
 
-import ButtonPrimary from "@/components/ButtonPrimary";
-import CustomLink from "../CustomLinks";
-import { useSelector } from "react-redux";
-import { rootState } from "@/redux/root-reducer-types";
 import { FormEvent, useState } from "react";
-import Alert from "@/components/Alert";
-import style from "./style.module.css";
-import useLinksValid from "@/hooks/useInvalidLinks";
-import { udpatedLinksId } from "@/redux/userLinks/reducer";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+
+import Alert from "@/components/Alert";
+import ButtonPrimary from "@/components/ButtonPrimary";
+import useLinksValid from "@/hooks/useInvalidLinks";
+import { rootState } from "@/redux/root-reducer-types";
+import { udpatedLinksId } from "@/redux/userLinks/reducer";
+
+import CustomLink from "../CustomLinks";
+import style from "./style.module.css";
 
 const LinkForm = () => {
   const dispatch = useDispatch();
@@ -47,7 +49,9 @@ const LinkForm = () => {
   return (
     <>
       <section
-        className={"bg-white rounded-xl max-w-[808px] w-full min-h-full"}
+        className={
+          "bg-white dark:bg-dark-bg-2 dark:border dark:border-border rounded-xl max-w-[808px] w-full min-h-full"
+        }
       >
         <form onSubmit={onSubmit}>
           <div
@@ -55,7 +59,7 @@ const LinkForm = () => {
           >
             <CustomLink />
           </div>
-          <div className="flex items-end justify-end w-full py-6 px-10 border-1 border-t border-light_gray">
+          <div className="flex items-end justify-end w-full py-6 px-10 border-1 border-t border-light_gray dark:border-border">
             <ButtonPrimary
               maxWidth="91px"
               disabled={invalidLinks !== undefined || links.length === 0}
