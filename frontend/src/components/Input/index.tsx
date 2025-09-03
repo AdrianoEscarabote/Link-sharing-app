@@ -1,7 +1,8 @@
 "use client";
 
-import { LegacyRef, forwardRef } from "react";
+import { forwardRef, LegacyRef } from "react";
 import { twMerge } from "tailwind-merge";
+
 import { InputProps } from "./InputProps";
 
 function Input(
@@ -10,8 +11,10 @@ function Input(
 ) {
   const inputClassName = twMerge(
     className,
-    `BodyM h-12 rounded-lg border bg-white text-primaryDarker placeholder-black placeholder-opacity-20 ${
-      error ? "border-red" : "focus:ring-1 focus:ring-primary border-gray-300"
+    `BodyM h-12 rounded-lg border bg-white dark:bg-dark-bg-2 text-primaryDarker dark:text-grey-100 placeholder-black placeholder-opacity-20 ${
+      error
+        ? "border-red"
+        : "focus:ring-1 focus:ring-primary dark:border-border border-gray-300"
     }`
   );
 

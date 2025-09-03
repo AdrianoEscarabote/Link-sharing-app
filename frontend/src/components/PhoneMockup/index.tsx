@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import style from "./style.module.css";
-import PreviewLinkDraggable from "../PreviewLinkDraggable";
 import { useSelector } from "react-redux";
-import { rootState } from "../../redux/root-reducer-types";
 import { useDispatch } from "react-redux";
+
 import { setData } from "@/redux/userLinks/reducer";
+
+import { rootState } from "../../redux/root-reducer-types";
+import PreviewLinkDraggable from "../PreviewLinkDraggable";
+import style from "./style.module.css";
 
 const PhoneMockup = () => {
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ const PhoneMockup = () => {
   );
 
   return (
-    <section className="p-6 flex items-center justify-center w-full max-w-[560px] bg-white rounded-xl relative">
+    <section className="p-6 flex items-center justify-center w-full max-w-[560px] bg-white dark:bg-dark-bg-2 dark:border dark:border-border rounded-xl relative">
       <div className="w-[307] h-[631] relative flex items-center justify-center">
         <Image
           className={`${style.image}`}

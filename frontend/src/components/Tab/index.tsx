@@ -1,9 +1,10 @@
-import Image from "next/image";
-import { TabProps } from "./TabProps";
-import style from "./style.module.css";
-import Link from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
+import Image from "next/image";
+import Link from "next/link";
 import { twMerge } from "tailwind-merge";
+
+import style from "./style.module.css";
+import { TabProps } from "./TabProps";
 
 const Tab: React.FC<TabProps> = ({
   label,
@@ -16,8 +17,12 @@ const Tab: React.FC<TabProps> = ({
   const tabClassName = twMerge(
     `${
       style.tab
-    } py-[11px] px-[27px] HeadingS flex items-center gap-2 text-gray hover:text-dark_purple rounded-lg
-    ${active ? "bg-light_purple text-dark_purple" : "bg-transparent"}`,
+    } py-[11px] px-[27px] border border-transparent HeadingS flex items-center gap-2 text-gray hover:text-dark_purple rounded-lg
+    ${
+      active
+        ? "bg-light_purple dark:bg-dark-bg-2 dark:border dark:border-border text-dark_purple "
+        : "bg-transparent"
+    }`,
     className
   );
 
