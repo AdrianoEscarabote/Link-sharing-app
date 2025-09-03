@@ -89,6 +89,7 @@ const Form = () => {
             id="email"
             autoComplete="email"
             placeholder="e.g. alex@email.com"
+            data-testid="email-input"
             className={`${style.input_email} ${
               errors.email ? "border-red outline-red" : "border-light_gray"
             }`}
@@ -119,6 +120,7 @@ const Form = () => {
             autoComplete="current-password"
             id="password"
             placeholder="Enter your password"
+            data-testid="password-input"
             className={`${style.input_email} ${
               errors.email ? "border-red outline-red" : "border-light_gray"
             }`}
