@@ -1,15 +1,21 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 import Image from "next/image";
-import Tab from "../Tab";
-import LinkSecondary from "../LinkSecondary";
-import style from "./style.module.css";
+import { useTheme } from "next-themes";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { rootState } from "@/redux/root-reducer-types";
+
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { rootState } from "@/redux/root-reducer-types";
+
+import LinkSecondary from "../LinkSecondary";
+import Tab from "../Tab";
+import { Button } from "../ui/button";
+import style from "./style.module.css";
 
 const Header = () => {
+  const { setTheme, theme } = useTheme();
   const { id, uuid } = useSelector(
     (rootReducer: rootState) => rootReducer.profileDataSlice
   );
@@ -33,10 +39,17 @@ const Header = () => {
   }, [windowLocation]);
 
   return (
-    <header className={`${style.header} bg-white rounded-xl`}>
+    <header
+      className={`${style.header} bg-white dark:bg-dark-bg-2 rounded-xl dark:border dark:border-border`}
+    >
       <nav className="w-full flex items-center justify-between">
         <Image
-          src="/assets/logo-devlinks-large.svg"
+          key={theme}
+          src={`${
+            theme === "dark"
+              ? "/assets/logo-devlinks-large.svg"
+              : "/assets/logo-devlinks-white.svg"
+          }`}
           alt=""
           width={146}
           height={32}
@@ -67,13 +80,27 @@ const Header = () => {
           />
         </div>
 
-        <LinkSecondary
-          maxWidth="114px"
-          href={`/Preview/${uuid}`}
-          disabled={uuid ? false : true}
-          className={`${style.link}`}
-          label={!showText ? "Preview" : ""}
-        />
+        <div className="flex gap-4 items-center">
+          <div>
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Toggle theme"
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="border border-grey-500 text-grey-300 dark:border-border"
+            >
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
+          </div>
+          <LinkSecondary
+            maxWidth="114px"
+            href={`/Preview/${uuid}`}
+            disabled={uuid ? false : true}
+            className={`${style.link} dark:hover:bg-grey-500 dark:hover:text-grey-100 dark:hover:border-border`}
+            label={!showText ? "Preview" : ""}
+          />
+        </div>
       </nav>
     </header>
   );
