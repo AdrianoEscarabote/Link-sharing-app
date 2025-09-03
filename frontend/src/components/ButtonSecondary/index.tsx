@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+
 import { ButtonProps } from "./ButtonProps";
 import style from "./style.module.css";
 

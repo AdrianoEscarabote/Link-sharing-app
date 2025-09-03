@@ -1,8 +1,9 @@
+import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
+
 import { LinkPrimaryProps } from "./LinkPrimaryProps";
 import style from "./style.module.css";
-import { Url } from "next/dist/shared/lib/router/router";
-import { twMerge } from "tailwind-merge";
 
 const LinkPrimary: React.FC<LinkPrimaryProps> = ({
   label,

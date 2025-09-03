@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { LinkTypes, PlatformClass } from "./LinkTypes";
 import { useEffect, useState } from "react";
+
+import { LinkTypes, PlatformClass } from "./LinkTypes";
 import style from "./style.module.css";
 
 const PreviewLink: React.FC<LinkTypes> = ({

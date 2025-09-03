@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+
 import { AlertProps } from "./AlertProps";
 import style from "./style.module.css";
 

@@ -1,7 +1,8 @@
 import { twMerge } from "tailwind-merge";
+
+import LoadingComponent from "../LoadingComponent";
 import { ButtonProps } from "./ButtonProps";
 import style from "./style.module.css";
-import LoadingComponent from "../LoadingComponent";
 
 const ButtonPrimary: React.FC<ButtonProps> = ({
   label,

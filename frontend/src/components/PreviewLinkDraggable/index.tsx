@@ -1,14 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useDrag, useDrop } from "react-dnd";
+
 import {
+  LinkDragTypes,
   LinkTypes,
   PlatformClass,
-  LinkDragTypes,
 } from "./PreviewLinkDraggableTypes";
-import { useEffect, useRef, useState } from "react";
 import style from "./style.module.css";
-import { useDrag, useDrop } from "react-dnd";
 
 const PreviewLinkDraggable: React.FC<LinkTypes> = ({
   link,
