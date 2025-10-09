@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { TabProps } from "./TabProps";
+
 import Tab from ".";
+import { TabProps } from "./TabProps";
 
 export default {
   title: "components/Tab",

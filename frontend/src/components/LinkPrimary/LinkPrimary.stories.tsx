@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import LinkPrimary from ".";
 import { LinkPrimaryProps } from "./LinkPrimaryProps";
 

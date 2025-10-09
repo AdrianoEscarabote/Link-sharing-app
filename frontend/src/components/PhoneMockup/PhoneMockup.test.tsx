@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen } from "@testing-library/react";
-import PhoneMockup from ".";
 import { Provider } from "react-redux";
 import configureMockstore from "redux-mock-store";
+
 import getMockState from "@/utils/getMockState";
+
+import PhoneMockup from ".";
 
 const mockStore = configureMockstore();
 

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import LinkPrimary from ".";
 
 describe("Link Primary test", () => {

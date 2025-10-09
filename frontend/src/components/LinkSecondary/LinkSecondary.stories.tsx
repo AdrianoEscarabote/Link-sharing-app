@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { LinkSecondaryProps } from "./LinkSecondaryProps";
+
 import LinkSecondary from ".";
+import { LinkSecondaryProps } from "./LinkSecondaryProps";
 
 export default {
   title: "components/LinkSecondary",

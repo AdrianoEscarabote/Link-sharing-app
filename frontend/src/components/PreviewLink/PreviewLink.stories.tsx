@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import PreviewLink from "./index";
 import { LinkTypes } from "./LinkTypes";
 

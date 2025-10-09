@@ -37,4 +37,4 @@ type PlatformClass =
   | "Hashnode"
   | "StackOverflow";
 
-export { LinkTypes, PlatformsName, PlatformClass };
+export { LinkTypes, PlatformClass,PlatformsName };

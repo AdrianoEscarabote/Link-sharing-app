@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render } from "@testing-library/react";
-import Header from ".";
 import { Provider } from "react-redux";
 import configureMockstore from "redux-mock-store";
+
 import getMockState from "../../utils/getMockState";
+import Header from ".";
 
 const mockStore = configureMockstore();
 

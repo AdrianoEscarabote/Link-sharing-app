@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import LinkSecondary from ".";
 
 describe("Link Secondary Component", () => {
