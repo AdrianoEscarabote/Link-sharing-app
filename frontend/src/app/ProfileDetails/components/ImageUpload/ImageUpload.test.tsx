@@ -1,8 +1,10 @@
 import { render } from "@testing-library/react";
-import ImageUpload from ".";
-import getMockState from "@/utils/getMockState";
-import configureMockStore from "redux-mock-store";
 import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
+
+import getMockState from "@/utils/getMockState";
+
+import ImageUpload from ".";
 
 const mockStore = configureMockStore();
 

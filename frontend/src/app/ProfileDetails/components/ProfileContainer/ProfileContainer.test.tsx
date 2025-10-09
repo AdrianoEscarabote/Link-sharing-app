@@ -1,10 +1,12 @@
 import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
-import ProfileContainer from ".";
-import configureMockStore from "redux-mock-store";
-import getMockState from "@/utils/getMockState";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
+
+import getMockState from "@/utils/getMockState";
+
+import ProfileContainer from ".";
 
 const mockStore = configureMockStore();
 

@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import ProfileDetailsPage from "./page";
 import { Provider } from "react-redux";
+
 import store from "@/redux/store";
+
+import ProfileDetailsPage from "./page";
 
 export default {
   title: "app/ProfileDetails/page",

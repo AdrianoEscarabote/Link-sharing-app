@@ -1,8 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Select from ".";
-import getMockState from "@/utils/getMockState";
-import configureMockStore from "redux-mock-store";
 import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
+
+import getMockState from "@/utils/getMockState";
+
+import Select from ".";
 
 const mockStore = configureMockStore();
 

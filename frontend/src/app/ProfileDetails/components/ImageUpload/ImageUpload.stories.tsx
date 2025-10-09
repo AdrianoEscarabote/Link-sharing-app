@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import ImageUpload from ".";
 import { Provider } from "react-redux";
+
 import store from "@/redux/store";
+
+import ImageUpload from ".";
 
 export default {
   title: "app/ProfileDetails/ImageUpload",

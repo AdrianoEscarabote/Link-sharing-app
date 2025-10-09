@@ -1,8 +1,10 @@
 import { render } from "@testing-library/react";
-import LinkForm from ".";
-import getMockState from "@/utils/getMockState";
-import configureMockStore from "redux-mock-store";
 import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
+
+import getMockState from "@/utils/getMockState";
+
+import LinkForm from ".";
 const mockStore = configureMockStore();
 const id = 1;
 const index = 1;

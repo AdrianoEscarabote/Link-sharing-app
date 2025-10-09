@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import LinksPage from "./page";
 import { Provider } from "react-redux";
+
 import store from "@/redux/store";
+
+import LinksPage from "./page";
 
 export default {
   title: "app/Links/page",

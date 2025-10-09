@@ -1,9 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Form from ".";
 import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
+
 import getMockState from "@/utils/getMockState";
 
-import configureMockStore from "redux-mock-store";
+import Form from ".";
 
 const mockStore = configureMockStore();
 

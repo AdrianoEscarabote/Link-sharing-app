@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import LinkContainer from ".";
 import { Provider } from "react-redux";
+
 import store from "@/redux/store";
+
+import LinkContainer from ".";
 
 export default {
   title: "app/Links/LinkContainer",

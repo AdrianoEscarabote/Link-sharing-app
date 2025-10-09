@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import PreviewPage from "./page";
 import { Provider } from "react-redux";
+
 import store from "@/redux/store";
+
+import PreviewPage from "./page";
 
 export default {
   title: "app/Preview/page",

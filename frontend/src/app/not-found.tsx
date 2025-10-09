@@ -1,7 +1,8 @@
 "use client";
 
-import useUserAuthenticated from "@/hooks/useUserAuthenticated";
 import Image from "next/image";
+
+import useUserAuthenticated from "@/hooks/useUserAuthenticated";
 
 const CustomErrorPage = () => {
   useUserAuthenticated();

@@ -9,4 +9,4 @@ interface SelectProps {
   onChange: (newValue: string) => void;
 }
 
-export type { SelectProps, OptionsSelectedTypes };
+export type { OptionsSelectedTypes,SelectProps };

@@ -1,10 +1,12 @@
 import { render } from "@testing-library/react";
-import LinkContainer from ".";
-import getMockState from "@/utils/getMockState";
-import configureMockStore from "redux-mock-store";
-import { Provider } from "react-redux";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
+
+import getMockState from "@/utils/getMockState";
+
+import LinkContainer from ".";
 
 const mockStore = configureMockStore();
 

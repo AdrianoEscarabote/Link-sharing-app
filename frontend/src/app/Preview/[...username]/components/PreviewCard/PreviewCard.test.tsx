@@ -1,7 +1,8 @@
 import { render } from "@testing-library/react";
-import getMockState from "../../../../../utils/getMockState";
-import configureMockstore from "redux-mock-store";
 import { Provider } from "react-redux";
+import configureMockstore from "redux-mock-store";
+
+import getMockState from "../../../../../utils/getMockState";
 import PreviewCard from ".";
 
 const mockStore = configureMockstore();

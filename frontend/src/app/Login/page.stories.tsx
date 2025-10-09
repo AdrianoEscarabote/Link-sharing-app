@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import LoginPage from "./page";
 
 export default {

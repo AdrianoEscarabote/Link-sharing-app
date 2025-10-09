@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import ImageContainer from ".";
 import { Provider } from "react-redux";
+
 import store from "@/redux/store";
+
+import ImageContainer from ".";
 
 export default {
   title: "app/ProfileDetails/ImageContainer",

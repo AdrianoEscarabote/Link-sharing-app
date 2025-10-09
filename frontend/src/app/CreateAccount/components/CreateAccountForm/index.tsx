@@ -83,6 +83,7 @@ const CreateAccountForm = () => {
                 message: "Invalid email!",
               },
             })}
+            data-testid="email-input"
             className={`${
               style.input_email
             } BodyM h-12 rounded-lg border border-solid ${
