@@ -1,12 +1,13 @@
-import { useState, useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
+
+import { setData } from "@/redux/userLinks/reducer";
 import {
   setProfileDetails,
   setProfileImageUrl,
   setUserUuid,
 } from "@/redux/userProfileData/reducer";
-import { setData } from "@/redux/userLinks/reducer";
-import { useRouter } from "next/navigation";
 
 const useProfileData = () => {
   const router = useRouter();

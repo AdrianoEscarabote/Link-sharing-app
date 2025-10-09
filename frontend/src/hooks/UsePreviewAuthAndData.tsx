@@ -1,7 +1,8 @@
-import { setData } from "@/redux/userLinks/reducer";
-import { setPreviewData } from "@/redux/userProfileData/reducer";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+
+import { setData } from "@/redux/userLinks/reducer";
+import { setPreviewData } from "@/redux/userProfileData/reducer";
 
 const usePreviewAuthAndData = () => {
   const dispatch = useDispatch();

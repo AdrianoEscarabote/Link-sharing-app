@@ -1,6 +1,7 @@
-import { rootState } from "@/redux/root-reducer-types";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+
+import { rootState } from "@/redux/root-reducer-types";
 
 interface LinkInvalidTypes {
   id: string;
@@ -25,6 +26,7 @@ const useLinksValid = () => {
         new URL(url);
         return true;
       } catch (error) {
+        console.error("Invalid URL:", error);
         return false;
       }
     };

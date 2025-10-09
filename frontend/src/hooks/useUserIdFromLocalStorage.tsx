@@ -1,6 +1,7 @@
-import { setUserId } from "@/redux/userProfileData/reducer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+
+import { setUserId } from "@/redux/userProfileData/reducer";
 
 const useUserIdFromLocalStorage = () => {
   const dispatch = useDispatch();
@@ -10,17 +11,15 @@ const useUserIdFromLocalStorage = () => {
       try {
         const response = await fetch("https://localhost:auth/me", {
           method: "GET",
-          credentials: "include", // Isso permite que os cookies sejam enviados com a requisição
+          credentials: "include",
         });
 
         if (response.ok) {
           const data = await response.json();
           dispatch(setUserId({ id: data._id }));
-        } else {
-          // Tratar erro de autenticação ou outro erro
         }
       } catch (error) {
-        // Tratar erro de requisição
+        console.error("Error fetching user ID:", error);
       }
     };
 
