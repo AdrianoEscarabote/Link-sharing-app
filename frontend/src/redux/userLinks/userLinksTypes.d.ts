@@ -27,9 +27,9 @@ interface changeSelectValueType {
 }
 
 export {
-  linksType,
-  setLinksType,
-  removeLinkType,
-  changeValueType,
   changeSelectValueType,
+  changeValueType,
+  linksType,
+  removeLinkType,
+  setLinksType,
 };

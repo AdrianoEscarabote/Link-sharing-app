@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import {
+  changeSelectValueType,
+  changeValueType,
   linksType,
   removeLinkType,
   setLinksType,
-  changeValueType,
-  changeSelectValueType,
 } from "./userLinksTypes";
 
 interface initialStateType {
@@ -72,7 +73,7 @@ const userLinksSlice = createSlice({
       }
     },
 
-    handleResetLinks: (state, action: PayloadAction) => {
+    handleResetLinks: () => {
       return initialState;
     },
 

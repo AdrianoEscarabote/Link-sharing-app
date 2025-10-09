@@ -46,13 +46,13 @@ interface setUserUuidTypes {
 }
 
 export {
-  setUserUuidTypes,
-  setProfileDetailsProps,
+  initialStateTypes,
   initialStateTypes,
   LinkTypes,
   setEmailProps,
-  initialStateTypes,
-  setUserIdProps,
   setPreviewDataProps,
+  setProfileDetailsProps,
   setProfileImageUrlTypes,
+  setUserIdProps,
+  setUserUuidTypes,
 };

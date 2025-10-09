@@ -1,6 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import profileDataSlice from "./userProfileData/reducer";
+
 import userLinksSlice from "./userLinks/reducer";
+import profileDataSlice from "./userProfileData/reducer";
 
 const rootReducer = combineReducers({
   profileDataSlice,

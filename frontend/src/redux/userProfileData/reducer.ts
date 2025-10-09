@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import {
   initialStateTypes,
   setEmailProps,
+  setPreviewDataProps,
   setProfileDetailsProps,
   setProfileImageUrlTypes,
   setUserIdProps,
-  setPreviewDataProps,
   setUserUuidTypes,
 } from "./profileDataTypes";
-import { act } from "react-dom/test-utils";
 
 const initialState: initialStateTypes = {
   email: "",
@@ -46,7 +46,7 @@ const profileDataSlice = createSlice({
       }
     },
 
-    handleResetData: (state, action: PayloadAction) => {
+    handleResetData: () => {
       return initialState;
     },
 

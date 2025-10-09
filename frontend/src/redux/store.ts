@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
+
 import rootReducer from "./root-reducer";
 
 const logger = createLogger();

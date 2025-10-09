@@ -38,4 +38,4 @@ interface LinksSliceType {
   links: userLinksSliceTypes[];
 }
 
-export { rootState, PlatformsName };
+export { PlatformsName, rootState };
