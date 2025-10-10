@@ -4,12 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import { PlatformsName, rootState } from "@/redux/root-reducer-types";
-import {
-  changeValue,
-  removeLink,
-  setData,
-  setNewLink,
-} from "@/redux/userLinks/reducer";
+import { removeLink, setData, setNewLink } from "@/redux/userLinks/reducer";
 
 import ButtonSecondary from "../../../../components/ButtonSecondary/index";
 import GetYouStarted from "../GetYouStarted";
@@ -64,15 +59,6 @@ const CustomLink = () => {
         })
       );
     }
-  };
-
-  const handleChangeInputLink = (id: string, newValue: string) => {
-    dispatch(
-      changeValue({
-        idToUpdate: id,
-        newValue,
-      })
-    );
   };
 
   return (
