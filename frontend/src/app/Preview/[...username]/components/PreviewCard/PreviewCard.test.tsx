@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureMockstore from "redux-mock-store";
