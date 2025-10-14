@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev --port 5427",
+    "start": "next start -p 5427",
     "test": "jest",
     "build": "next build",
     "storybook": "storybook dev -p 6006",
