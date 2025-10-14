@@ -73,7 +73,7 @@ const useProfileData = () => {
         setLoading(false);
       }
     },
-    []
+    [dispatch, router]
   );
 
   useEffect(() => {

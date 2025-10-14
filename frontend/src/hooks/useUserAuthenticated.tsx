@@ -28,7 +28,7 @@ const useUserAuthenticated = () => {
       }, 1300);
     };
     callApi();
-  }, []);
+  }, [router]);
 
   return { error };
 };

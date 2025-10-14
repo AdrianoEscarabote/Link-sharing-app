@@ -24,7 +24,7 @@ const useUserIdFromLocalStorage = () => {
     };
 
     callApi();
-  }, []);
+  }, [dispatch]);
 };
 
 export default useUserIdFromLocalStorage;

@@ -33,13 +33,13 @@ const useLinksData = () => {
         console.error(error);
       }
     },
-    []
+    [dispatch]
   );
   useEffect(() => {
     if (links.length === 0) {
       getData();
     }
-  }, []);
+  }, [getData, links.length]);
 };
 
 export default useLinksData;

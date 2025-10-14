@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -60,7 +61,7 @@ const usePreviewAuthAndData = () => {
       }
     };
     authenticateAndFetchData();
-  }, []);
+  }, [baseurl, dispatch]);
 
   return { userData, loading, loggedUser };
 };
