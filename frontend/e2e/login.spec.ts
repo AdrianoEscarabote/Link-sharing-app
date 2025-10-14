@@ -1,4 +1,4 @@
-// tests/e2e/login.spec.ts
+// e2e/login.spec.ts
 import { expect, test } from "@playwright/test";
 
 test("user can login with valid credentials", async ({ page }) => {
