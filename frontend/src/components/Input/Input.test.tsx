@@ -23,7 +23,7 @@ describe("Input component", () => {
 
     const input = screen.getByTestId("input");
 
-    expect(input).toHaveStyle("background-color: black");
+    expect(input).toHaveStyle("background-color: rgb(0, 0, 0)");
     expect(input).toHaveAttribute("aria-label");
   });
 });
