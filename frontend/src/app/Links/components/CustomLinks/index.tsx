@@ -34,9 +34,12 @@ const CustomLink = () => {
   };
 
   const handleAddNewLink = () => {
-    const counter = links.length + 1;
     if (links.length < 5) {
-      const id = `${links.length + counter}`;
+      const id =
+        typeof crypto !== "undefined" && "randomUUID" in crypto
+          ? crypto.randomUUID()
+          : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
       const platforms = [
         "GitHub",
         "Facebook",
@@ -46,14 +49,13 @@ const CustomLink = () => {
       ];
 
       const alreadySelected = links.map((link) => link.platform);
-
       const platformName = platforms.find((platform) => {
         return !alreadySelected.includes(platform as PlatformsName);
       });
 
       dispatch(
         setNewLink({
-          id: id,
+          id,
           link: "",
           platform: platformName as PlatformsName,
         })
@@ -89,7 +91,7 @@ const CustomLink = () => {
           <LinkPlatformSelector
             removeLink={handleRemoveLink}
             key={item.id}
-            id={JSON.stringify(index + 1)}
+            id={item.id}
             index={index}
             link={item.link}
             platform={item.platform}

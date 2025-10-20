@@ -69,12 +69,10 @@ const Select = ({ id, platformSelected, onChange }: SelectProps) => {
   const handleClickOptions = () => setOptionsOpen(!optionsOpen);
 
   return (
-    <div
-      id={id}
-      className="w-full rounded-lg relative"
-      onClick={handleClickOptions}
-    >
+    <div className="w-full rounded-lg relative" onClick={handleClickOptions}>
       <button
+        id={id}
+        data-testid={id}
         role="button"
         type="button"
         accessKey="s"
@@ -114,6 +112,7 @@ const Select = ({ id, platformSelected, onChange }: SelectProps) => {
             <button
               type="button"
               role="button"
+              data-testid={`platform-option-${platform.img}`}
               key={index}
               disabled={platform.disabled}
               onClick={(e) => handleSelecteOptions(e.currentTarget.innerText)}

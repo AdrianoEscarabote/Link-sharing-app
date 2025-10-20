@@ -50,22 +50,26 @@ const LinkPlatformSelector = ({
     removeLink(id);
 
   useEffect(() => {
-    dispatch(
-      changeValue({
-        idToUpdate: id,
-        newValue: linkValue,
-      })
-    );
-  }, [linkValue]);
+    if (linkValue !== link) {
+      dispatch(
+        changeValue({
+          idToUpdate: id,
+          newValue: linkValue,
+        })
+      );
+    }
+  }, [linkValue, link, dispatch, id]);
 
   useEffect(() => {
-    dispatch(
-      changeSelectValue({
-        idToUpdate: id,
-        platformSelected: platformValue,
-      })
-    );
-  }, [platformValue]);
+    if (platformValue !== platform) {
+      dispatch(
+        changeSelectValue({
+          idToUpdate: id,
+          platformSelected: platformValue,
+        })
+      );
+    }
+  }, [platformValue, platform, dispatch, id]);
 
   const handleChangeValueSelect = (newValue: PlatformsName) => {
     setPlatformValue(newValue);
@@ -90,10 +94,11 @@ const LinkPlatformSelector = ({
               height={12}
             />
 
-            <p className="BodyM font-bold">Link #{id}</p>
+            <p className="BodyM font-bold">Link #{index + 1}</p>
           </div>
 
           <button
+            data-testid={`remove-link-${index}`}
             className="BodyM dark:text-red opacity-80 hover:underline"
             type="button"
             onClick={handleClickRemove}
@@ -110,7 +115,7 @@ const LinkPlatformSelector = ({
         Platform
         <Select
           onChange={handleChangeValueSelect}
-          id="selectInput"
+          id={`platform-select-${index}`}
           platformSelected={platformValue}
         />
       </label>
@@ -121,6 +126,7 @@ const LinkPlatformSelector = ({
       >
         Link
         <Input
+          data-testid={`link-url-input-${index}`}
           className={`p-4 ${style.link_input}`}
           value={linkValue}
           onChange={(ev) => setLinkValue(ev.currentTarget.value)}
