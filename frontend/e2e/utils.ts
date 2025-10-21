@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { expect, Page } from "@playwright/test";
 
 export async function uiLogin(page: Page) {
@@ -19,3 +20,12 @@ export const routeWithUuid = (route: string) =>
       `\\/?$`,
     "i"
   );
+
+export const removeAllLinks = async (page: any) => {
+  await page.goto("/Links");
+  const removeButtons = page.locator('[data-testid^="remove-link-"]');
+  while ((await removeButtons.count()) > 0) {
+    await removeButtons.first().click();
+    await page.waitForTimeout(50);
+  }
+};
