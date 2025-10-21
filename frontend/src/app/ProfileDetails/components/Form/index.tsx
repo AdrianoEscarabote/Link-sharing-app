@@ -141,6 +141,7 @@ const Form = () => {
                   message: "Can’t be empty",
                 },
               })}
+              data-testid="first-name-input"
               onChange={(ev) => handleInputChange("firstName", ev)}
             />
             {errors.firstName && (
@@ -178,6 +179,7 @@ const Form = () => {
                   message: "Can’t be empty",
                 },
               })}
+              data-testid="last-name-input"
               onChange={(ev) => handleInputChange("lastName", ev)}
             />
             {errors.lastName && (
@@ -216,6 +218,7 @@ const Form = () => {
                   message: "Invalid email!",
                 },
               })}
+              data-testid="email-input"
               onChange={(ev) => handleInputChange("previewEmail", ev)}
             />
             {errors.previewEmail && (
