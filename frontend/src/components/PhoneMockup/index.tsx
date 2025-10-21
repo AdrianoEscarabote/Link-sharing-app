@@ -73,19 +73,18 @@ const PhoneMockup = () => {
           <div
             className={`${style.container} relative w-full flex flex-col rounded-lg gap-5`}
           >
-            {links.length > 0
-              ? links.map((item, index) => (
-                  <PreviewLinkDraggable
-                    id={item.id}
-                    index={index}
-                    moveLink={moveLink}
-                    key={index}
-                    size="small"
-                    label={item.platform}
-                    link={item.link}
-                  />
-                ))
-              : null}
+            {links.length > 0 &&
+              links.map((item, index) => (
+                <PreviewLinkDraggable
+                  key={item.id}
+                  id={item.id}
+                  index={index}
+                  moveLink={moveLink}
+                  size="small"
+                  label={item.platform}
+                  link={item.link}
+                />
+              ))}
           </div>
         </div>
       </div>
