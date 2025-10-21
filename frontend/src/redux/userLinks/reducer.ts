@@ -1,110 +1,76 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import {
-  changeSelectValueType,
-  changeValueType,
-  linksType,
-  removeLinkType,
-  setLinksType,
-} from "./userLinksTypes";
+import type { PlatformsName } from "@/redux/root-reducer-types";
 
-interface initialStateType {
-  links: linksType[];
-}
+type LinkItem = { id: string; link: string; platform: PlatformsName };
 
-const initialState: initialStateType = {
-  links: [],
+const genId = () =>
+  typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+const ensureUniqueId = (items: LinkItem[], candidate: string) => {
+  let id = candidate;
+  const used = new Set(items.map((l) => l.id));
+  while (used.has(id)) id = genId();
+  return id;
 };
 
 const userLinksSlice = createSlice({
   name: "User Links",
-  initialState,
+  initialState: { links: [] as LinkItem[] },
   reducers: {
-    setNewLink: (state, action: PayloadAction<setLinksType>) => {
-      const { link, platform } = action.payload;
-      if (!link && !platform) {
-        return;
+    setNewLink: (
+      state,
+      {
+        payload,
+      }: PayloadAction<{ id: string; link: string; platform: PlatformsName }>
+    ) => {
+      const id = ensureUniqueId(state.links, payload.id);
+      state.links.push({ ...payload, id });
+    },
+    removeLink: (state, { payload }: PayloadAction<{ idToRemove: string }>) => {
+      state.links = state.links.filter((l) => l.id !== payload.idToRemove);
+    },
+    setData: (state, { payload }: PayloadAction<LinkItem[]>) => {
+      state.links = payload.map((l) => ({ ...l }));
+    },
+    changeValue: (
+      state,
+      { payload }: PayloadAction<{ idToUpdate: string; newValue: string }>
+    ) => {
+      const item = state.links.find((l) => l.id === payload.idToUpdate);
+      if (item && item.link !== payload.newValue) item.link = payload.newValue;
+    },
+    changeSelectValue: (
+      state,
+      {
+        payload,
+      }: PayloadAction<{ idToUpdate: string; platformSelected: PlatformsName }>
+    ) => {
+      const item = state.links.find((l) => l.id === payload.idToUpdate);
+      if (item && item.platform !== payload.platformSelected) {
+        item.platform = payload.platformSelected;
       }
-      if (state.links.map((item) => item.platform === platform)[0]) {
-        return;
-      }
-      const id = `${state.links.length + 1}`;
-
-      state.links.push({
-        link,
-        platform,
-        id,
-      });
     },
 
-    setData: (state, action: PayloadAction<setLinksType[]>) => {
-      if (action.payload.length !== 0) {
-        state.links = action.payload;
-      }
+    handleResetLinks: (state) => {
+      state.links = [];
     },
 
     udpatedLinksId: (state) => {
-      state.links = state.links.map((link, index) => ({
-        ...link,
-        id: `${index + 1}`,
-      }));
-    },
-
-    removeLink: (state, action: PayloadAction<removeLinkType>) => {
-      const { idToRemove } = action.payload;
-      const number = Number(idToRemove);
-      state.links.splice(number - 1, 1);
-    },
-
-    changeValue: (state, action: PayloadAction<changeValueType>) => {
-      const { idToUpdate, newValue } = action.payload;
-      if (idToUpdate && newValue) {
-        state.links = state.links.map((link) => {
-          if (link.id === idToUpdate) {
-            return {
-              ...link,
-              link: newValue,
-            };
-          }
-          return {
-            ...link,
-          };
-        });
-      }
-    },
-
-    handleResetLinks: () => {
-      return initialState;
-    },
-
-    changeSelectValue: (
-      state,
-      action: PayloadAction<changeSelectValueType>
-    ) => {
-      const { platformSelected, idToUpdate } = action.payload;
-
-      if (platformSelected && idToUpdate) {
-        state.links = state.links.map((link) => {
-          if (link.id === idToUpdate) {
-            link.platform = platformSelected;
-          }
-          return {
-            ...link,
-          };
-        });
-      }
+      return state;
     },
   },
 });
 
 export const {
-  udpatedLinksId,
   setNewLink,
-  setData,
   removeLink,
+  handleResetLinks,
+  setData,
   changeValue,
   changeSelectValue,
-  handleResetLinks,
+  udpatedLinksId,
 } = userLinksSlice.actions;
-
 export default userLinksSlice.reducer;
